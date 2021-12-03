@@ -4,8 +4,12 @@ const asyncHandler = require('express-async-handler');
 const { setTokenCookie } = require('../../utils/auth.js');
 const { User } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth.js');
+const sessionRouter = require('./session.js');
+const usersRouter = require('./users.js');
 
+apiRouter.use('/session', sessionRouter);
 
+apiRouter.use('/users', usersRouter);
 
 /*
  --- API TESTING CODE ---
