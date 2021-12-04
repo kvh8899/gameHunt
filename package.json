@@ -23,9 +23,5 @@
   "bugs": {
     "url": "https://github.com/kvh8899/gameHunt/issues"
   },
-  "homepage": "https://github.com/kvh8899/gameHunt#readme",
-  "dependencies": {
-    "sequelize": "^6.12.0-beta.1",
-    "sequelize-cli": "^6.3.0"
-  }
+  "homepage": "https://github.com/kvh8899/gameHunt#readme"
 }
