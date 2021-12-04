@@ -9,10 +9,13 @@ function LoginFormPage({ hidden }) {
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  function reset(){
+    setCredential("");
+    setPassword("");
+  }
   useEffect(() => {
     if (sessionUser) {
-      setCredential("");
-      setPassword("");
+      reset();
     }
   }, [sessionUser]);
   useEffect(() => {
@@ -26,20 +29,22 @@ if(sessionUser) return  <Redirect to="/" />
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.login({ credential, password })).catch(
+     dispatch(sessionActions.login({ credential, password })).catch(
       async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       }
     );
+    reset();
   };
   
  
   return !hidden.hidden ? (
     <div className="login">
+    <div className="darken modal"></div>
       <button>X</button>
       <div
-        className="formElement"
+        className="formElement formWrapper"
         onClick={(e) => {
           e.stopPropagation();
         }}
