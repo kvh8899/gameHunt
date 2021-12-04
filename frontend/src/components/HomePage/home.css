@@ -12,6 +12,10 @@ button {
 button:hover {
   color: rgb(0, 255, 42);
 }
+input:focus{
+  outline:none;
+  border-color:rgb(3,236,3);
+}
 a {
   color: black;
   text-decoration: none;
@@ -68,8 +72,12 @@ nav > a {
 }
 .leftNav input {
   margin-left: 20px;
-  border: 2px solid rgb(3, 236, 3);
+  border: 2px solid #772ce8;
   border-radius: 3px;
   width: 50%;
   height: 20px;
+}
+.leftNav input:focus{
+  outline:none;
+  border-color:rgb(3,236,3);
 }
