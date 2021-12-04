@@ -1,23 +1,23 @@
 .login {
   position: fixed;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    right: 0;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  right: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  justify-content: center;
 }
-.modal{
-  position:fixed;
+.modal {
+  position: fixed;
   right: 0;
   top: 0;
   left: 0;
   bottom: 0;
 }
-.login .formWrapper{
-  position:absolute;
+.login .formWrapper {
+  position: absolute;
   display: flex;
   flex-direction: column;
   width: 500px;
@@ -29,23 +29,21 @@
   background-color: white;
 }
 .login ul {
-  list-style:none;
-  margin:0px;
-  padding:10px;
-  height:50px;
-  top:60px;
+  list-style: none;
+  margin: 0px;
+  padding: 10px;
 }
-.login > button{
-    height:40px;
-    width:40px;
-    border-radius:100%;
-    margin-right:600px;
-    margin-bottom:400px;
-    font-weight:bold;
-    font-size:20px;
+.login > button {
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+  margin-right: 600px;
+  margin-bottom: 400px;
+  font-weight: bold;
+  font-size: 20px;
 }
-form{
-  width:400px;
+form {
+  width: 400px;
 }
 form div {
   display: flex;
@@ -53,12 +51,19 @@ form div {
   padding: 20px;
   align-items: flex-start;
 }
-form input{
+form input {
   border: 2px solid rgb(3, 236, 3);
-  border-radius:3px;
-  width:98%;
-  height:20px;
+  border-radius: 3px;
+  width: 98%;
+  height: 20px;
 }
-form button{
-  width:100%;
+form button {
+  width: 100%;
+}
+#demo{
+  background:none;
+  color:black;
+}
+#demo:hover{
+  color:#772ce8;
 }

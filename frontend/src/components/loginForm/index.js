@@ -76,6 +76,10 @@ if(sessionUser) return  <Redirect to="/" />
             />
           </div>
           <div>
+              <button id="demo" onClick={(e) =>{
+                  setCredential("Demo-lition");
+                  setPassword("password");
+              }}>Log in as demo</button>
             <button type="submit">Sign In</button>
           </div>
         </form>

@@ -19,8 +19,9 @@ function HomePage() {
       <nav>
         <div className="leftNav">
           <Link to="/">Home</Link>
-          <Link>About</Link>
+          <Link to="/">About</Link>
           <input placeholder="Search for games"></input>
+          {sessionUser?<Link to="/">Welcome {sessionUser.username}!</Link>:""}
         </div>
 
         <div>

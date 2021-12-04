@@ -32,7 +32,8 @@ nav > div {
   display: flex;
   justify-content: flex-end;
   width: 400px;
-  right: 40px;
+  margin-right:60px;
+  right:18px;
   align-items: center;
 }
 nav button {
@@ -58,10 +59,17 @@ nav > a {
 
 .leftNav {
   display: flex;
-  justify-content: center;
-  width: 500px;
+  justify-content: flex-start;
+  width: 900px;
+  margin-left:60px;
 }
-.leftNav a,
+.leftNav a {
+  margin-left: 20px;
+}
 .leftNav input {
   margin-left: 20px;
+  border: 2px solid rgb(3, 236, 3);
+  border-radius: 3px;
+  width: 50%;
+  height: 20px;
 }
