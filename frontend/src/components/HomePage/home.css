@@ -1,0 +1,30 @@
+.body > nav{
+    box-shadow: 0px 0px 3px lightgray;
+    height:80px;
+    margin:0px;
+}
+
+.body{
+    position:relative;
+    margin:auto;
+}
+.darken{
+    background-color:rgb(0,0,0,0.5);
+}
+.darkenButton{
+    background-color:rgb(39, 31, 109);
+    color:rgba(185, 185, 185, 0.5);
+}
+button{
+    border:none;
+    color:white;
+    background-color:rgb(48, 35, 170);
+    border-radius:2px;
+    padding:10px;
+}
+button:hover{
+    color:rgb(0, 255, 42);
+}
+a:hover{
+    color:rgb(0, 255, 42);
+}
