@@ -9,7 +9,7 @@ function LoginFormPage({ hidden }) {
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-  function reset(){
+  function reset() {
     setCredential("");
     setPassword("");
   }
@@ -19,17 +19,17 @@ function LoginFormPage({ hidden }) {
     }
   }, [sessionUser]);
   useEffect(() => {
-    if(!hidden.hidden){
-        document.body.style.overflow = "hidden";
-    }else{
-        document.body.style.overflow = "scroll";
+    if (!hidden.hidden) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "scroll";
     }
-  },[hidden.hidden])
-if(sessionUser) return  <Redirect to="/" />
+  }, [hidden.hidden]);
+  if (sessionUser) return <Redirect to="/" />;
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-     dispatch(sessionActions.login({ credential, password })).catch(
+    dispatch(sessionActions.login({ credential, password })).catch(
       async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
@@ -37,11 +37,10 @@ if(sessionUser) return  <Redirect to="/" />
     );
     reset();
   };
-  
- 
+
   return !hidden.hidden ? (
     <div className="login">
-    <div className="darken modal"></div>
+      <div className="darken modal"></div>
       <button>X</button>
       <div
         className="formElement formWrapper"
@@ -76,10 +75,15 @@ if(sessionUser) return  <Redirect to="/" />
             />
           </div>
           <div>
-              <button id="demo" onClick={(e) =>{
-                  setCredential("Demo-lition");
-                  setPassword("password");
-              }}>Log in as demo</button>
+            <button
+              id="demo"
+              onClick={(e) => {
+                setCredential("Demo-lition");
+                setPassword("password");
+              }}
+            >
+              Log in as demo
+            </button>
             <button type="submit">Sign In</button>
           </div>
         </form>

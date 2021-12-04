@@ -40,7 +40,15 @@ if (!isProduction) {
       }
     })
   );
+app.use('/',routes);
 
+app.use((_req, _res, next) => {
+    const err = new Error("The requested resource couldn't be found.");
+    err.title = "Resource Not Found";
+    err.errors = ["The requested resource couldn't be found."];
+    err.status = 404;
+    next(err);
+});
 // Process sequelize errors
 app.use((err, _req, _res, next) => {
   // check if error is a Sequelize error:
@@ -59,16 +67,6 @@ app.use((err, _req, res, _next) => {
       errors: err.errors,
       stack: isProduction ? null : err.stack
     });
-  });
-
-app.use('/',routes);
-
-app.use((_req, _res, next) => {
-    const err = new Error("The requested resource couldn't be found.");
-    err.title = "Resource Not Found";
-    err.errors = ["The requested resource couldn't be found."];
-    err.status = 404;
-    next(err);
   });
 
 module.exports = app;

@@ -27,6 +27,7 @@
   border: 20px solid rgb(243, 242, 242);
   border-radius: 2px;
   background-color: white;
+  
 }
 .login ul {
   list-style: none;
@@ -44,12 +45,14 @@
 }
 form {
   width: 400px;
+  
 }
 form div {
   display: flex;
   flex-direction: column;
   padding: 20px;
   align-items: flex-start;
+  
 }
 form input {
   border: 2px solid rgb(3, 236, 3);
