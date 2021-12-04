@@ -1,5 +1,5 @@
 {
-  "name": "pHuntClone",
+  "name": "gameHunt",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -22,5 +22,5 @@
   "bugs": {
     "url": "https://github.com/kvh8899/gameHunt/issues"
   },
-  "homepage": "https://github.com/kvh8899/pHuntClone#readme"
+  "homepage": "https://github.com/kvh8899/gameHunt#readme"
 }
