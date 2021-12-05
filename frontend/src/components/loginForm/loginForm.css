@@ -16,19 +16,6 @@
   left: 0;
   bottom: 0;
 }
-.login .formWrapper {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  width: 500px;
-  height: 300px;
-  align-items: center;
-  justify-content: center;
-  border: 20px solid rgb(243, 242, 242);
-  border-radius: 2px;
-  background-color: white;
-  
-}
 .login ul {
   list-style: none;
   margin: 0px;
@@ -50,7 +37,7 @@ form {
 form div {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 10px;
   align-items: flex-start;
   
 }

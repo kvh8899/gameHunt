@@ -81,3 +81,15 @@ nav > a {
   outline:none;
   border-color:rgb(3,236,3);
 }
+.formWrapper {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 300px;
+  align-items: center;
+  justify-content: center;
+  border: 20px solid rgb(243, 242, 242);
+  border-radius: 2px;
+  background-color: white;
+}
