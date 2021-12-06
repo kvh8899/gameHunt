@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
@@ -11,9 +11,14 @@ function SignupFormPage({suHidden}) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
-
+  useEffect(() => {
+    if (!suHidden.suHidden) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "scroll";
+    }
+  }, [suHidden.suHidden]);
   if (sessionUser) return <Redirect to="/" />;
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password === confirmPassword) {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import HomePage from "./components/HomePage";
+import PostList from "./components/PostList"
 import SignupFormPage from "./components/signUpForm";
 import * as sessionActions from "./store/session";
 
@@ -16,6 +17,7 @@ function App() {
     <Switch>
       <Route exact path="/">
         <HomePage />
+        <PostList />
       </Route>
       <Route path="/signup">
         <SignupFormPage />

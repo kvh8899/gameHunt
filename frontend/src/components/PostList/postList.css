@@ -1,0 +1,58 @@
+.postContainer {
+  height: 95%;
+  width: 95%;
+  border: 1px solid lightgray;
+  background-color: white;
+  border-radius: 5px;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.wrapContent {
+  position: relative;
+  z-index: 100;
+  margin-top: 20px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tab {
+  width: 95%;
+}
+/* this must be changed to a button */
+p {
+  background-color: white;
+  font-family: sans-serif;
+  text-align: center;
+  width: 50px;
+  border: 1px solid lightgray;
+  padding: 10px;
+  border-radius: 20px;
+}
+img{
+    width:80px;
+    height:80px;
+    object-fit:cover;
+}
+.post{
+    display:flex;
+    padding:20px;
+    border-bottom:1px solid lightgray;
+}
+.post > div{
+    padding-left:15px;
+    font-family:sans-serif;
+}
+.post > div div{
+    padding-bottom:10px;
+}
+.subHeader{
+    font-size:14px;
+    color:rgb(129, 129, 129);
+}

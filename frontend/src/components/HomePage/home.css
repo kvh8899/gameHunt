@@ -1,3 +1,4 @@
+
 button {
   font-family: sans-serif;
   font-size: 15px;
@@ -24,6 +25,8 @@ a:hover {
   color: #772ce8;
 }
 .body > nav {
+  background-color:white;
+  width:100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -47,11 +50,12 @@ nav > a {
   margin-left: 40px;
 }
 .body {
-  position: relative;
-  margin: auto;
+  width:100%;
+  display:flex;
   font-family: sans-serif;
   font-size: 15px;
   font-weight: bold;
+  margin-top:0px;
 }
 .darken {
   background-color: rgb(0, 0, 0, 0.5);
@@ -92,4 +96,9 @@ nav > a {
   border: 20px solid rgb(243, 242, 242);
   border-radius: 2px;
   background-color: white;
+}
+.postContainer{
+  height:80%;
+  width:80%;
+  border: 1px solid black;
 }

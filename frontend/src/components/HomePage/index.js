@@ -10,7 +10,8 @@ function HomePage() {
   const [suHidden,setSuHidden] = useState(true);
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
-
+  
+ 
   return (
     <div
       className="body"
