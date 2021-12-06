@@ -33,7 +33,7 @@ p {
   padding: 10px;
   border-radius: 20px;
 }
-img{
+.listImg{
     width:80px;
     height:80px;
     object-fit:cover;

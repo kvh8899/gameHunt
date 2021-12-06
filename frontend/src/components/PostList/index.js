@@ -1,6 +1,7 @@
 import "./postList.css";
 import PostContainer from "./PostContainer";
 import * as postActions from "../../store/post";
+import {getSinglePost} from "../../store/postProfile"
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import {toggle} from "../../store/postshow"
@@ -20,6 +21,7 @@ function PostList() {
           {postList.map((post) => {
             return <div key={post.id} onClick={(e) => {
                 dispatch(toggle(post.id));
+                dispatch(getSinglePost(post.id));
             }}><PostContainer post={post} /></div>;
           })}
         </div>
