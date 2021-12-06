@@ -1,5 +1,4 @@
 .postContainer {
-  height: 95%;
   width: 95%;
   border: 1px solid lightgray;
   background-color: white;
@@ -13,8 +12,7 @@
   width: 100%;
 }
 .wrapContent {
-  position: relative;
-  z-index: 100;
+  
   margin-top: 20px;
   height: 100%;
   width: 100%;
@@ -46,11 +44,17 @@ img{
     border-bottom:1px solid lightgray;
 }
 .post > div{
+    border-radius:5px;
     padding-left:15px;
+    width:100%;
     font-family:sans-serif;
 }
 .post > div div{
     padding-bottom:10px;
+}
+.post:hover{
+    background-color:rgb(238, 238, 238);
+    cursor: pointer;
 }
 .subHeader{
     font-size:14px;

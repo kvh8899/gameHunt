@@ -1,7 +1,7 @@
 
 function PostContainer({post}){
     return (
-        <div key={post.id} className="post">
+        <div id={post.id} className="post">
             <img src={post.headerImage} alt="null!"></img>
             <div>
                 <div className="header">{post.header}</div>
