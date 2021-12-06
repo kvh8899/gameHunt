@@ -1,5 +1,5 @@
 const express = require("express");
-const { Post } = require('../../db/models');
+const { Post,User } = require('../../db/models');
 const asyncHandler = require("express-async-handler");
 const router = express.Router();
 
@@ -13,7 +13,12 @@ router.get('/',asyncHandler(async(req,res) => {
 }));
 
 router.get('/:id(\\d+)',asyncHandler(async(req,res) => {
-    const getPost = await Post.findByPk(req.params.id);
+    const getPost = await Post.findByPk(req.params.id,{
+        include:User,
+        where:{
+            id:req.params.id
+        }
+    });
     res.json(getPost);
 }));
 //create a post

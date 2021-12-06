@@ -15,14 +15,28 @@ function PostProfile() {
         }}
       >
         <div className="profileHeader">
-          <img className="listImg" src={postProfileData.headerImage} alt="Nothing here!"></img>
+          <img
+            className="listImg"
+            src={postProfileData.headerImage}
+            alt="Nothing here!"
+          ></img>
           <div className="profHeadings">
             <h2>{postProfileData.header}</h2>
             <h3>{postProfileData.subHeader}</h3>
           </div>
         </div>
-        <div className="imgContainer"><img className="imageContent" src={postProfileData.contentImage} alt="none"></img></div>
-        <div> </div>
+        <div className="imgContainer">
+          <div className="imageContentWrap">
+            <img
+              className="imageContent"
+              src={postProfileData.contentImage}
+              alt="none"
+            ></img>
+            <h3>Maker: {postProfileData?.User?.username}</h3>
+          </div>
+          <div className="divider"> </div>
+          <p className="description">{postProfileData.description}</p>
+        </div>
       </div>
     </div>
   ) : (

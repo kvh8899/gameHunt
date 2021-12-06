@@ -49,6 +49,7 @@
 }
 .imgContainer {
     display:flex;
+    flex-direction:column;
     justify-content:center;
     width: 80%;
     background-color: white;
@@ -59,8 +60,24 @@
     width:750px;
 }
 .imageContent {
-    padding:20px;
     height:400px;
     width:500px;
     object-fit:cover;
+}
+.divider{
+    border-bottom:1px solid lightgray;
+    width:95%;
+    align-self:center;
+}
+.description{
+    align-self:start;
+    padding:20px;
+    font-weight:normal;
+}
+.imageContentWrap{
+    display:flex;
+    padding:20px;
+}
+.imageContentWrap > h3{
+    margin-left:20px;
 }

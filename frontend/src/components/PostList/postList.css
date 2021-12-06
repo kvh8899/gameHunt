@@ -24,15 +24,7 @@
   width: 95%;
 }
 /* this must be changed to a button */
-p {
-  background-color: white;
-  font-family: sans-serif;
-  text-align: center;
-  width: 50px;
-  border: 1px solid lightgray;
-  padding: 10px;
-  border-radius: 20px;
-}
+
 .listImg{
     width:80px;
     height:80px;
@@ -60,4 +52,8 @@ p {
 .subHeader{
     font-size:14px;
     color:rgb(129, 129, 129);
+}
+.title{
+    padding-bottom:25px;
+    font-family:sans-serif;
 }
