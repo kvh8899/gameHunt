@@ -1,15 +1,16 @@
-const FLIP = 'flip/showDiv'
-const toggle = ()=> {
+const FLIP = 'show/showDiv'
+export const toggle = (id)=> {
     return {
         type: FLIP,
+        payload:id
     }
 }
-function psReducer(state=false,action){
+function psReducer(state=null,action){
     switch(action.type){
         case FLIP:
-            let flip = state;
-            return !flip;
+            return action.payload;
         default:
             return state;
     }
 }
+export default psReducer;

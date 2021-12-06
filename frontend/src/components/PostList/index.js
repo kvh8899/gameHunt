@@ -3,12 +3,13 @@ import PostContainer from "./PostContainer";
 import * as postActions from "../../store/post";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
+import {toggle} from "../../store/postshow"
 function PostList() {
   const postList = useSelector((state) => state.posts);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(postActions.getPost());
-  }, []);
+  }, [dispatch]);
   return (
     <div className="wrapContent">
       <div className="tab">
@@ -16,8 +17,10 @@ function PostList() {
       </div>
       <div className="content">
         <div className="postContainer">
-          {postList.map((e) => {
-            return <div key={e.id}><PostContainer post={e} /></div>;
+          {postList.map((post) => {
+            return <div key={post.id} onClick={(e) => {
+                dispatch(toggle(post.id));
+            }}><PostContainer post={post} /></div>;
           })}
         </div>
       </div>

@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import PostList from "./components/PostList"
-import SignupFormPage from "./components/signUpForm";
 import * as sessionActions from "./store/session";
 
 function App() {
@@ -18,9 +17,6 @@ function App() {
       <Route exact path="/">
         <HomePage />
         <PostList />
-      </Route>
-      <Route path="/signup">
-        <SignupFormPage />
       </Route>
     </Switch>
   );

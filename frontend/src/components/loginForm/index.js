@@ -41,7 +41,7 @@ function LoginFormPage({ hidden }) {
   return !hidden.hidden ? (
     <div className="login">
       <div className="darken modal"></div>
-      <button>X</button>
+      <button className="exit">X</button>
       <div
         className="formElement formWrapper"
         onClick={(e) => {

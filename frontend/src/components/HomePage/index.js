@@ -1,23 +1,25 @@
 import LoginFormPage from "../loginForm";
 import SignupFormPage from "../signUpForm"
+import PostProfile from "../PostProfile"
 import "./home.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
+import {toggle} from "../../store/postshow"
 function HomePage() {
   const [hidden, setHidden] = useState(true);
   const [suHidden,setSuHidden] = useState(true);
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   
- 
   return (
     <div
       className="body"
       onClick={(e) => {
         setHidden(true);
         setSuHidden(true);
+        dispatch(toggle(null))
       }}
     >
       <nav>
@@ -61,6 +63,7 @@ function HomePage() {
       </nav>
       <LoginFormPage hidden={{ hidden, setHidden }} />
       <SignupFormPage suHidden={{suHidden,setSuHidden}}/>
+      <PostProfile />
     </div>
   );
 }
