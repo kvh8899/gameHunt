@@ -23,6 +23,13 @@ router.get('/:id(\\d+)',asyncHandler(async(req,res) => {
 }));
 //create a post
 
+router.post('/',asyncHandler(async(req,res) => {
+    const createPost = await Post.create({
+        userId:req.userId,
+        header: req.header,
+        subHeader:req.subHeader,
+    })
+}))
 //update a post
 
 
