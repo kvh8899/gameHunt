@@ -14,7 +14,7 @@ body{
     align-items:center;
     height:100%;
     width:100%;
-    
+    overflow:scroll;
 }
 h2{
     margin:0px;
