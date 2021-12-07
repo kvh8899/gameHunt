@@ -1,9 +1,14 @@
 import "./PostProfile.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import {useHistory} from 'react-router-dom'
+import { toggle } from "../../store/postshow";
 function PostProfile() {
+
   const postShow = useSelector((state) => state.postShow);
   const postProfileData = useSelector((state) => state.postProfile);
   const sessionUser = useSelector((state) => state.session.user);
+  const hist = useHistory();
+  const dispatch = useDispatch();
   if (postShow) {
     document.body.style.overflow = "hidden";
   } else {
@@ -50,7 +55,10 @@ function PostProfile() {
                 Date.parse(postProfileData.createdAt)
               ).toLocaleDateString("en-US")}
             </h3>
-            <button className="edit">Edit</button>
+            {sessionUser?.id === postProfileData.userId?<button className="edit" onClick={(e) => {
+                hist.push(`/posts/${postProfileData.id}/edit`);
+                dispatch(toggle(null));
+            }}>Edit</button>:""}
           </div>
         </div>
       </div>

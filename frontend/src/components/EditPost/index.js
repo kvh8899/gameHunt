@@ -1,40 +1,55 @@
-import "./CreatePost.css";
-import { useHistory } from "react-router-dom";
-import { useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getSinglePost } from "../../store/postProfile";
 import { csrfFetch } from "../../store/csrf";
-import {useSelector} from 'react-redux';
-function CreatePost() {
-  const hist = useHistory();
-  const [title, setTitle] = useState("");
-  const [subHeader, setSubHeader] = useState("");
-  const [headerImage, setHeaderImage] = useState("");
-  const [contentImage, setContentImage] = useState("");
-  const [description, setDescription] = useState("");
-
+import "./EditPost.css";
+function EditPost() {
   const sessionUser = useSelector((state) => state.session.user);
+  const param = useParams();
+  const dispatch = useDispatch();
+  const hist = useHistory();
+  useEffect(() => {
+    dispatch(getSinglePost(param.id));
+  }, []);
+  const data = useSelector((state) => state.postProfile);
+  const [title, setTitle] = useState(data.header);
+  const [subHeader, setSubHeader] = useState(data.subHeader);
+  const [headerImage, setHeaderImage] = useState(data.headerImage);
+  const [contentImage, setContentImage] = useState(data.contentImage);
+  const [description, setDescription] = useState(data.description);
   return (
     <div className="postCreate">
-      <p>Show off your game to the world!</p>
+      <div>
+        <p>Edit</p>
+        <button
+          className="delete"
+          onClick={async (e) => {
+            await csrfFetch(`/api/posts/${param.id}`, { method: "DELETE" });
+            hist.push("/");
+          }}
+        >
+          Delete
+        </button>
+      </div>
       <form
         className="postCreateForm"
         onSubmit={async (e) => {
           e.preventDefault();
-          let obj ={
-              userId:sessionUser.id,
-              header:title,
-              subHeader,
-              headerImage,
-              contentImage,
-              description
-          }
-          const create = await csrfFetch("/api/posts", {
-            method: "POST",
-            headers:{'Content-Type':"application/json"},
+          let obj = {
+            userId: sessionUser.id,
+            header: title,
+            subHeader,
+            headerImage,
+            contentImage,
+            description,
+          };
+          await csrfFetch(`/api/posts/${param.id}/edit`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(obj),
           });
-          const cPost = await create.json();
-          console.log("created",cPost)
-          hist.push("/");
+          hist.push(`/posts/${param.id}`);
           //set the post that is showing to the one that is created here
         }}
       >
@@ -90,10 +105,10 @@ function CreatePost() {
             setDescription(e.target.value);
           }}
         ></textarea>
-        <button>Create Post</button>
+        <button>Update</button>
       </form>
     </div>
   );
 }
 
-export default CreatePost;
+export default EditPost;
