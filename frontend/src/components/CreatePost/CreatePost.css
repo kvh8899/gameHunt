@@ -1,0 +1,14 @@
+.postCreate {
+  font-family: sans-serif;
+}
+.postCreateForm > input {
+  margin-bottom: 20px;
+}
+.postCreateForm > button{
+    margin-top: 20px;
+    margin-bottom:20px;
+}
+textarea{
+    height:400px;
+    width:98%
+}
