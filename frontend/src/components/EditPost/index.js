@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getSinglePost } from "../../store/postProfile";
 import { csrfFetch } from "../../store/csrf";
+import { toggle } from "../../store/postshow";
+
 import "./EditPost.css";
 function EditPost() {
   const sessionUser = useSelector((state) => state.session.user);
@@ -50,6 +52,8 @@ function EditPost() {
             body: JSON.stringify(obj),
           });
           hist.push(`/posts/${param.id}`);
+          dispatch(toggle(param.id));
+          dispatch(getSinglePost(param.id));
           //set the post that is showing to the one that is created here
         }}
       >

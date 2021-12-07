@@ -33,8 +33,7 @@ function CreatePost() {
             body: JSON.stringify(obj),
           });
           const cPost = await create.json();
-          console.log("created",cPost)
-          hist.push("/");
+          hist.push(`/posts/${cPost.id}`);
           //set the post that is showing to the one that is created here
         }}
       >

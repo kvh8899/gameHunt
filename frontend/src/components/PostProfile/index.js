@@ -28,7 +28,7 @@ function PostProfile() {
           <img
             className="listImg"
             src={postProfileData.headerImage}
-            alt="Nothing here!"
+            alt="404 not found"
           ></img>
           <div className="profHeadings">
             <h2>{postProfileData.header}</h2>
@@ -41,7 +41,7 @@ function PostProfile() {
               <img
                 className="imageContent"
                 src={postProfileData.contentImage}
-                alt="none"
+                alt="404 not found"
               ></img>
             </div>
             <div className="divider"> </div>
