@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 function PostProfile() {
   const postShow = useSelector((state) => state.postShow);
   const postProfileData = useSelector((state) => state.postProfile);
+  const sessionUser = useSelector((state) => state.session.user);
   if (postShow) {
     document.body.style.overflow = "hidden";
   } else {
@@ -49,6 +50,7 @@ function PostProfile() {
                 Date.parse(postProfileData.createdAt)
               ).toLocaleDateString("en-US")}
             </h3>
+            <button className="edit">Edit</button>
           </div>
         </div>
       </div>
