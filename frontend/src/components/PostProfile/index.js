@@ -1,5 +1,7 @@
 import "./PostProfile.css";
 import { useSelector } from "react-redux";
+import {useHistory} from 'react-router-dom'
+//import { useEffect, useRef, useState } from "react";
 function PostProfile() {
   const postShow = useSelector((state) => state.postShow);
   const postProfileData = useSelector((state) => state.postProfile);
@@ -9,6 +11,9 @@ function PostProfile() {
   } else {
     document.body.style.overflow = "scroll";
   }
+ 
+
+  
   return postShow ? (
     <div className="profileWrapper">
       <div className="darken modal"></div>
@@ -52,6 +57,18 @@ function PostProfile() {
             </h3>
             <button className="edit">Edit</button>
           </div>
+        </div>
+        <div className="commentsInput fixed">
+          <form onSubmit={(e) => {
+            e.preventDefault();
+          }}>
+            <input placeholder="What are your thoughts?"></input>
+            <button>Submit</button>
+          </form>
+        </div>
+        <div className="ss"></div>
+        <div className="commentsContainer">
+          <p>Comments</p>
         </div>
       </div>
     </div>
