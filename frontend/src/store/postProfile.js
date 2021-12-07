@@ -1,3 +1,5 @@
+import { csrfFetch } from './csrf';
+import {toggle} from './postshow';
 const GETONEPOST = "post/getonepost";
 const getOnePost = (data) => {
   return {
@@ -19,5 +21,15 @@ function postProfile(state = {}, action) {
       return state;
   }
 }
-
+export const Post = (data) => async (dispatch) => {
+  
+  const response = await csrfFetch("/api/posts", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+  const cPost = await response.json();
+  dispatch(toggle(cPost.id));
+  return cPost;
+};
 export default postProfile;

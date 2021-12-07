@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect ,useHistory} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import "./loginForm.css";
 function LoginFormPage({ hidden }) {
   const dispatch = useDispatch();
-  const hist = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
