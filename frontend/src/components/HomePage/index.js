@@ -19,6 +19,7 @@ function HomePage() {
     if(id){
       dispatch(toggle(id));
       dispatch(getSinglePost(id));
+      history.push(`/posts/${id}`);
     }else{
       dispatch(toggle(null));
     }
