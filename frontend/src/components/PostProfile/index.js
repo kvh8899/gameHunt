@@ -1,6 +1,5 @@
 import "./PostProfile.css";
 import { useSelector } from "react-redux";
-import postProfile from "../../store/postProfile";
 function PostProfile() {
   const postShow = useSelector((state) => state.postShow);
   const postProfileData = useSelector((state) => state.postProfile);
@@ -25,17 +24,27 @@ function PostProfile() {
             <h3>{postProfileData.subHeader}</h3>
           </div>
         </div>
-        <div className="imgContainer">
-          <div className="imageContentWrap">
-            <img
-              className="imageContent"
-              src={postProfileData.contentImage}
-              alt="none"
-            ></img>
-            <h3>Maker: {postProfileData?.User?.username}</h3>
+        <div className="mainContent">
+          <div className="imgContainer">
+            <div className="imageContentWrap">
+              <img
+                className="imageContent"
+                src={postProfileData.contentImage}
+                alt="none"
+              ></img>
+            </div>
+            <div className="divider"> </div>
+            <p className="description">{postProfileData.description}</p>
           </div>
-          <div className="divider"> </div>
-          <p className="description">{postProfileData.description}</p>
+          <div className="profData">
+            <h3>Maker: {postProfileData?.User?.username}</h3>
+            <h3>
+              Created:
+              {new Date(
+                Date.parse(postProfileData.createdAt)
+              ).toLocaleDateString("en-US")}
+            </h3>
+          </div>
         </div>
       </div>
     </div>

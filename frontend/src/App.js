@@ -18,6 +18,9 @@ function App() {
         <HomePage />
         <PostList />
       </Route>
+      <Route path="/post">
+        <HomePage />
+      </Route>
     </Switch>
   );
 }

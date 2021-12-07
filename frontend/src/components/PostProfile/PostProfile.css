@@ -21,7 +21,7 @@
   background-color: rgb(245, 244, 244);
   border-radius: 5px;
   margin-top:50px;
-  width: 95%;
+  width: 80%;
 }
 .profExit {
   position: relative;
@@ -40,6 +40,7 @@
   padding-top: 50px;
   padding-bottom: 20px;
   display: flex;
+  
 }
 .profHeadings {
   padding-left: 20px;
@@ -57,7 +58,7 @@
     border-radius: 5px;
     margin-left: 30px;
     margin-bottom:30px;
-    width:750px;
+    width:550px;
 }
 .imageContent {
     height:400px;
@@ -78,6 +79,17 @@
     display:flex;
     padding:20px;
 }
-.imageContentWrap > h3{
-    margin-left:20px;
+.profData{
+    margin-left:40px;
+    margin-right:40px;
+    background-color:white;
+    border: 1px solid lightgray;
+    border-radius:5px;
+    padding:10px;
+    font-weight:normal;
+    flex:1;
+}
+.mainContent{
+    display:flex;
+    align-items:flex-start;
 }

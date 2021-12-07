@@ -1,25 +1,25 @@
 import LoginFormPage from "../loginForm";
-import SignupFormPage from "../signUpForm"
-import PostProfile from "../PostProfile"
+import SignupFormPage from "../signUpForm";
+import PostProfile from "../PostProfile";
 import "./home.css";
-import { Link } from "react-router-dom";
+import { Link,useHistory} from "react-router-dom";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
-import {toggle} from "../../store/postshow"
+import { toggle } from "../../store/postshow";
 function HomePage() {
   const [hidden, setHidden] = useState(true);
-  const [suHidden,setSuHidden] = useState(true);
+  const [suHidden, setSuHidden] = useState(true);
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
-  
+  const history = useHistory();
   return (
     <div
       className="body"
       onClick={(e) => {
         setHidden(true);
         setSuHidden(true);
-        dispatch(toggle(null))
+        dispatch(toggle(null));
       }}
     >
       <nav>
@@ -27,10 +27,24 @@ function HomePage() {
           <Link to="/">Home</Link>
           <Link to="/">About</Link>
           <input placeholder="Search for games"></input>
-          {sessionUser?<Link to="/">Welcome {sessionUser.username}!</Link>:""}
+          {sessionUser ? (
+            <Link to="/">Welcome {sessionUser.username}!</Link>
+          ) : (
+            ""
+          )}
         </div>
 
         <div>
+          <button onClick={(e) => {
+            if(!sessionUser){
+              e.stopPropagation();
+              setSuHidden(false)
+            }else{
+              history.push("/post")
+            }
+          }}>
+            <i className="fa fa-plus"></i>
+          </button>
           {!sessionUser ? (
             <button
               onClick={(e) => {
@@ -43,17 +57,25 @@ function HomePage() {
           ) : (
             ""
           )}
-          <button>Products</button>
-          {!sessionUser ? <button onClick={(e) =>{
-            e.stopPropagation();
-            setSuHidden(false);
-          }}>Sign Up</button> : ""}
+          {!sessionUser ? (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setSuHidden(false);
+              }}
+            >
+              Sign Up
+            </button>
+          ) : (
+            ""
+          )}
           {!sessionUser ? (
             ""
           ) : (
             <button
               onClick={(e) => {
                 dispatch(sessionActions.logout());
+                history.push("/")
               }}
             >
               Logout
@@ -62,7 +84,7 @@ function HomePage() {
         </div>
       </nav>
       <LoginFormPage hidden={{ hidden, setHidden }} />
-      <SignupFormPage suHidden={{suHidden,setSuHidden}}/>
+      <SignupFormPage suHidden={{ suHidden, setSuHidden }} />
       <PostProfile />
     </div>
   );

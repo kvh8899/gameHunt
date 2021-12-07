@@ -17,7 +17,7 @@ export const getPost = () => async (dispatch) => {
 const postReducer = (state = [], action) => {
   switch (action.type) {
     case GETPOST:
-      return [...state, ...action.payload];
+      return [...action.payload];
     default:
       return state;
   }

@@ -10,7 +10,7 @@ function PostList() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(postActions.getPost());
-  }, [dispatch]);
+  }, []);
   return (
     <div className="wrapContent">
       <div className="tab">
