@@ -1,7 +1,7 @@
 import { useHistory, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getSinglePost } from "../../store/postProfile";
+import { getSinglePost ,updatePost} from "../../store/postProfile";
 import { csrfFetch } from "../../store/csrf";
 import { toggle } from "../../store/postshow";
 
@@ -20,6 +20,7 @@ function EditPost() {
   const [headerImage, setHeaderImage] = useState(data.headerImage);
   const [contentImage, setContentImage] = useState(data.contentImage);
   const [description, setDescription] = useState(data.description);
+  const [errors,setErrors] = useState([]);
   return (
     <div className="postCreate">
       <div>
@@ -46,14 +47,17 @@ function EditPost() {
             contentImage,
             description,
           };
-          await csrfFetch(`/api/posts/${param.id}/edit`, {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(obj),
+          dispatch(updatePost(obj,param.id))
+          .then(async (res) => {
+            dispatch(getSinglePost(res));
+            hist.push(`/posts/${res}`);
+          })
+          .catch(async (res) => {
+            const data = await res.json();
+            if (data && data.errors) setErrors(data.errors);
           });
-          hist.push(`/posts/${param.id}`);
-          dispatch(toggle(param.id));
-          dispatch(getSinglePost(param.id));
+          
+
           //set the post that is showing to the one that is created here
         }}
       >

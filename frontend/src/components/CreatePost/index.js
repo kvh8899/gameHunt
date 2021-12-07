@@ -1,7 +1,6 @@
 import "./CreatePost.css";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
-import { csrfFetch } from "../../store/csrf";
 import { useSelector, useDispatch } from "react-redux";
 import { Post, getSinglePost } from "../../store/postProfile";
 function CreatePost() {
@@ -35,7 +34,8 @@ function CreatePost() {
               contentImage,
               description,
             };
-            //use state
+            //redirect to post page
+            //if errors then print errors
             dispatch(Post(obj))
               .then(async (res) => {
                 dispatch(getSinglePost(res.id));
@@ -45,8 +45,6 @@ function CreatePost() {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);
               });
-
-            //set the post that is showing to the one that is created here
           }}
         >
           <label htmlFor="header">Title</label>
