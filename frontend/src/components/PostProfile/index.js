@@ -47,6 +47,7 @@ function PostProfile() {
           </div>
         </div>
       </div>
+      
     </div>
   ) : (
     ""

@@ -5,9 +5,11 @@ import {getSinglePost} from "../../store/postProfile"
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import {toggle} from "../../store/postshow"
+import {useHistory} from "react-router-dom"
 function PostList() {
   const postList = useSelector((state) => state.posts);
   const dispatch = useDispatch();
+  const hist = useHistory();
   useEffect(() => {
     dispatch(postActions.getPost());
   }, []);
@@ -22,6 +24,7 @@ function PostList() {
             return <div key={post.id} onClick={(e) => {
                 dispatch(toggle(post.id));
                 dispatch(getSinglePost(post.id));
+                hist.push(`/posts/${post.id}`);
             }}><PostContainer post={post} /></div>;
           })}
         </div>

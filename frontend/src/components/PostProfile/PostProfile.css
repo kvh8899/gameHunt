@@ -10,7 +10,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  overflow: scroll;
+  overflow:scroll;
 }
 
 .profileContent {
@@ -21,6 +21,7 @@
   background-color: rgb(245, 244, 244);
   border-radius: 5px;
   margin-top:50px;
+  min-width: 1000px;
   width: 80%;
 }
 .profExit {

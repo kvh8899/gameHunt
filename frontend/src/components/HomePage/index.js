@@ -2,17 +2,27 @@ import LoginFormPage from "../loginForm";
 import SignupFormPage from "../signUpForm";
 import PostProfile from "../PostProfile";
 import "./home.css";
-import { Link,useHistory} from "react-router-dom";
-import { useState } from "react";
+import { Link,useHistory,useParams} from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
 import { toggle } from "../../store/postshow";
+import {getSinglePost} from "../../store/postProfile"
 function HomePage() {
   const [hidden, setHidden] = useState(true);
   const [suHidden, setSuHidden] = useState(true);
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
+  const {id} = useParams();
+  useEffect(() => {
+    if(id){
+      dispatch(toggle(id));
+      dispatch(getSinglePost(id));
+    }else{
+      dispatch(toggle(null));
+    }
+  },[id])
   return (
     <div
       className="body"
@@ -20,6 +30,7 @@ function HomePage() {
         setHidden(true);
         setSuHidden(true);
         dispatch(toggle(null));
+        history.push("/");
       }}
     >
       <nav>
@@ -40,7 +51,7 @@ function HomePage() {
               e.stopPropagation();
               setSuHidden(false)
             }else{
-              history.push("/post")
+              history.push("/posts/new")
             }
           }}>
             <i className="fa fa-plus"></i>

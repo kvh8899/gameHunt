@@ -15,6 +15,9 @@
   top: 0;
   left: 0;
   bottom: 0;
+  display:flex;
+  justify-content:center;
+  overflow:scroll;
 }
 .login ul {
   list-style: none;
