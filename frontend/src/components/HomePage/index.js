@@ -7,7 +7,8 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
 import { toggle } from "../../store/postshow";
-import {getSinglePost} from "../../store/postProfile"
+import {getSinglePost,getOnePost} from "../../store/postProfile"
+
 function HomePage() {
   const [hidden, setHidden] = useState(true);
   const [suHidden, setSuHidden] = useState(true);
@@ -32,6 +33,7 @@ function HomePage() {
         setHidden(true);
         setSuHidden(true);
         dispatch(toggle(null));
+        dispatch(getOnePost({}));
         history.push("/");
       }}
     >

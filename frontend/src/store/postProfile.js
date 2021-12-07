@@ -1,5 +1,5 @@
 const GETONEPOST = "post/getonepost";
-const getOnePost = (data) => {
+export const getOnePost = (data) => {
   return {
     type: GETONEPOST,
     payload: data,

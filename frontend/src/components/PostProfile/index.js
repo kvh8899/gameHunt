@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 function PostProfile() {
   const postShow = useSelector((state) => state.postShow);
   const postProfileData = useSelector((state) => state.postProfile);
-  const sessionUser = useSelector((state) => state.session.user);
   if (postShow) {
     document.body.style.overflow = "hidden";
   } else {
