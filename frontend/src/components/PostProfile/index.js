@@ -2,18 +2,16 @@ import "./PostProfile.css";
 import { useSelector } from "react-redux";
 import {useHistory} from 'react-router-dom'
 //import { useEffect, useRef, useState } from "react";
-function PostProfile() {
+function PostProfile({suHidden}) {
   const postShow = useSelector((state) => state.postShow);
   const postProfileData = useSelector((state) => state.postProfile);
   const sessionUser = useSelector((state) => state.session.user);
+  const hist = useHistory();
   if (postShow) {
     document.body.style.overflow = "hidden";
   } else {
     document.body.style.overflow = "scroll";
   }
- 
-
-  
   return postShow ? (
     <div className="profileWrapper">
       <div className="darken modal"></div>
@@ -61,8 +59,12 @@ function PostProfile() {
         <div className="commentsInput fixed">
           <form onSubmit={(e) => {
             e.preventDefault();
+            if(!sessionUser){
+              hist.push("/");
+              suHidden.setSuHidden(false);
+            } 
           }}>
-            <input placeholder="What are your thoughts?"></input>
+            <input placeholder="What are your thoughts?" required></input>
             <button>Submit</button>
           </form>
         </div>
