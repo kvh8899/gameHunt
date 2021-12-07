@@ -10,7 +10,7 @@ const postsRouter = require('./posts.js');
 apiRouter.use('/session', sessionRouter);
 
 apiRouter.use('/users', usersRouter);
-apiRouter.use('/posts', postsRouter)
+apiRouter.use('/posts', postsRouter);
 
 /*
  --- API TESTING CODE ---

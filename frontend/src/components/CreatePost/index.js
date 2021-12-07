@@ -1,6 +1,8 @@
 import "./CreatePost.css";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
+import { csrfFetch } from "../../store/csrf";
+import {useSelector} from 'react-redux';
 function CreatePost() {
   const hist = useHistory();
   const [title, setTitle] = useState("");
@@ -8,6 +10,8 @@ function CreatePost() {
   const [headerImage, setHeaderImage] = useState("");
   const [contentImage, setContentImage] = useState("");
   const [description, setDescription] = useState("");
+
+  const sessionUser = useSelector((state) => state.session.user);
   return (
     <div className="postCreate">
       <p>Show off your game to the world!</p>
@@ -16,17 +20,21 @@ function CreatePost() {
         onSubmit={async (e) => {
           e.preventDefault();
           let obj ={
+              userId:sessionUser.id,
               header:title,
               subHeader,
               headerImage,
               contentImage,
               description
           }
-          const create = await fetch("/api/post", {
+          console.log(obj);
+          const create = await csrfFetch("/api/posts", {
             method: "POST",
             headers:{'Content-Type':"application/json"},
             body: JSON.stringify(obj),
           });
+          const cPost = await create.json();
+          console.log("created",cPost)
           hist.push("/");
           //set the post that is showing to the one that is created here
         }}

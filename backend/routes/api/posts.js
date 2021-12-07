@@ -25,13 +25,14 @@ router.get('/:id(\\d+)',asyncHandler(async(req,res) => {
 //create a post
 
 router.post('/',asyncHandler(async(req,res) => {
+    console.log(req)
     const createPost = await Post.create({
-        userId:req.userId,
-        header: req.header,
-        subHeader:req.subHeader,
-        headerImage:req.headerImage,
-        contentImage:req.contentImage,
-        description:req.description,
+        userId:req.body.userId,
+        header: req.body.header,
+        subHeader:req.body.subHeader,
+        headerImage:req.body.headerImage,
+        contentImage:req.body.contentImage,
+        description:req.body.description,
         createdAt:new Date(),
         updatedAt: new Date()
     });
@@ -43,9 +44,9 @@ router.post('/',asyncHandler(async(req,res) => {
 
 //delete a post
 router.delete('/:id(\\d+)',asyncHandler(async(req,res) => {
-    const deletePost = Post.findByPk(req.params);
+    const deletePost = await Post.findByPk(req.params.id);
     if(deletePost){
-        deletePost.delete();
+        deletePost.destroy();
         res.json({Message:`Post ${req.params} deleted`});
     }else{
         res.status = "404";
