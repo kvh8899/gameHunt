@@ -94,3 +94,7 @@
     display:flex;
     align-items:flex-start;
 }
+.edit{
+  width:100%;
+  margin-top:20px;
+}

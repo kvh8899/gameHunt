@@ -16,7 +16,7 @@ function PostList() {
   return (
     <div className="wrapContent">
       <div className="tab">
-        <h2 className="title">Welcome to GameHunt!</h2>
+        <h2 className="title">Is the next 🦄 here?</h2>
       </div>
       <div className="content">
         <div className="postContainer">

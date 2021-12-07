@@ -1,8 +1,19 @@
-import "./PostProfile.css"
-import { useSelector } from "react-redux";
+import "./PostProfile.css";
+import { useSelector, useDispatch } from "react-redux";
+import {useHistory} from 'react-router-dom'
+import { toggle } from "../../store/postshow";
 function PostProfile() {
+
   const postShow = useSelector((state) => state.postShow);
   const postProfileData = useSelector((state) => state.postProfile);
+  const sessionUser = useSelector((state) => state.session.user);
+  const hist = useHistory();
+  const dispatch = useDispatch();
+  if (postShow) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "scroll";
+  }
   return postShow ? (
     <div className="profileWrapper">
       <div className="darken modal"></div>
@@ -17,7 +28,7 @@ function PostProfile() {
           <img
             className="listImg"
             src={postProfileData.headerImage}
-            alt="Nothing here!"
+            alt="404 not found"
           ></img>
           <div className="profHeadings">
             <h2>{postProfileData.header}</h2>
@@ -30,7 +41,7 @@ function PostProfile() {
               <img
                 className="imageContent"
                 src={postProfileData.contentImage}
-                alt="none"
+                alt="404 not found"
               ></img>
             </div>
             <div className="divider"> </div>
@@ -44,10 +55,13 @@ function PostProfile() {
                 Date.parse(postProfileData.createdAt)
               ).toLocaleDateString("en-US")}
             </h3>
+            {sessionUser?.id === postProfileData.userId?<button className="edit" onClick={(e) => {
+                hist.push(`/posts/${postProfileData.id}/edit`);
+                dispatch(toggle(null));
+            }}>Edit</button>:""}
           </div>
         </div>
       </div>
-      
     </div>
   ) : (
     ""

@@ -1,9 +1,7 @@
 
 function PostContainer({post}){
     return (
-        <div id={post.id} className="post" onClick={(e) => {
-
-        }}>
+        <div id={post.id} className="post">
             <img src={post.headerImage} alt="null!" className="listImg"></img>
             <div>
                 <div className="header">{post.header}</div>

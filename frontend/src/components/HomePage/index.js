@@ -28,6 +28,7 @@ function HomePage() {
     <div
       className="body"
       onClick={(e) => {
+        e.preventDefault();
         setHidden(true);
         setSuHidden(true);
         dispatch(toggle(null));

@@ -12,3 +12,36 @@ textarea{
     height:400px;
     width:98%
 }
+.errors{
+    position:absolute;
+    padding:20px;
+    border:1px solid red;
+    top:80px;
+    left:40px;
+    border-radius:5px;
+    background-color: rgba(255, 0, 0, 0.3);
+    width:300px;
+    margin:10px;
+}
+.errors li{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    padding:10px;
+    overflow:scroll;
+}
+@media screen and (max-width:1111px){
+    .postCreate > div{
+        display: flex;
+        align-items:center;
+        flex-direction:column-reverse;
+    }
+    .errors{
+        position:relative;
+        margin:auto;
+        left:0px;
+        top:0px;
+        right:0px;
+
+    }
+}
