@@ -32,7 +32,7 @@ function EditPost() {
             hist.push("/");
           }}
         >
-          Delete
+          Remove Post
         </button>
       </div>
       {errors.length? <ul className="errors">
