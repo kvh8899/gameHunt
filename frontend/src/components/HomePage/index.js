@@ -47,8 +47,8 @@ function HomePage() {
 
         <div>
           <button onClick={(e) => {
+            e.stopPropagation();
             if(!sessionUser){
-              e.stopPropagation();
               setSuHidden(false)
             }else{
               history.push("/posts/new")

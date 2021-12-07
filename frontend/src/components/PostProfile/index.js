@@ -1,4 +1,4 @@
-import "./PostProfile.css";
+import "./PostProfile.css"
 import { useSelector } from "react-redux";
 function PostProfile() {
   const postShow = useSelector((state) => state.postShow);

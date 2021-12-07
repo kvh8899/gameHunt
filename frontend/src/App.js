@@ -24,7 +24,7 @@ function App() {
           <HomePage />
           <CreatePost />
         </Route>
-        <Route exact path="/posts/:id">
+        <Route path="/posts/:id">
           <HomePage />
           <PostList />
         </Route>
