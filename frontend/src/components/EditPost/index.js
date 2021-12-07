@@ -35,6 +35,11 @@ function EditPost() {
           Delete
         </button>
       </div>
+      {errors.length? <ul className="errors">
+          {errors.map((e) => (
+            <li>{e}</li>
+          ))}
+        </ul>: ""}
       <form
         className="postCreateForm"
         onSubmit={async (e) => {
