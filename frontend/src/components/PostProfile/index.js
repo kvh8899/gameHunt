@@ -1,8 +1,13 @@
-import "./PostProfile.css"
+import "./PostProfile.css";
 import { useSelector } from "react-redux";
 function PostProfile() {
   const postShow = useSelector((state) => state.postShow);
   const postProfileData = useSelector((state) => state.postProfile);
+  if (postShow) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "scroll";
+  }
   return postShow ? (
     <div className="profileWrapper">
       <div className="darken modal"></div>
@@ -47,7 +52,6 @@ function PostProfile() {
           </div>
         </div>
       </div>
-      
     </div>
   ) : (
     ""
