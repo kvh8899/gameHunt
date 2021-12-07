@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import PostList from "./components/PostList"
+import CreatePost from "./components/CreatePost";
 import * as sessionActions from "./store/session";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
       </Route>
       <Route path="/post">
         <HomePage />
+        <CreatePost />
       </Route>
     </Switch>
   );
