@@ -13,14 +13,6 @@ export const getSinglePost = (id) => async (dispatch) => {
   dispatch(getOnePost(data));
   return data;
 };
-function postProfile(state = {}, action) {
-  switch (action.type) {
-    case GETONEPOST:
-      return action.payload;
-    default:
-      return state;
-  }
-}
 export const Post = (data) => async (dispatch) => {
   const response = await csrfFetch("/api/posts", {
     method: "POST",
@@ -32,7 +24,7 @@ export const Post = (data) => async (dispatch) => {
   return cPost;
 };
 
-export const updatePost = (data,id) => async (dispatch) => {
+export const updatePost = (data, id) => async (dispatch) => {
   await csrfFetch(`/api/posts/${id}/edit`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
@@ -41,4 +33,23 @@ export const updatePost = (data,id) => async (dispatch) => {
   dispatch(toggle(id));
   return id;
 };
+
+//data should include userId and the content of the comment
+export const postComment = (data, postId) => async (dispatch) => {
+  await csrfFetch(`/api/posts/${postId}/comments`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+};
+
+//REDUCER
+function postProfile(state = {}, action) {
+  switch (action.type) {
+    case GETONEPOST:
+      return action.payload;
+    default:
+      return state;
+  }
+}
 export default postProfile;

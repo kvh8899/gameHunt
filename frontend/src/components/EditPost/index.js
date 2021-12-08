@@ -11,14 +11,14 @@ function EditPost() {
   const dispatch = useDispatch();
   const hist = useHistory();
   useEffect(() => {
-    dispatch(getSinglePost(param.id));
+    dispatch(getSinglePost(param.editId));
   }, []);
   const data = useSelector((state) => state.postProfile);
-  const [title, setTitle] = useState(data.header);
-  const [subHeader, setSubHeader] = useState(data.subHeader);
-  const [headerImage, setHeaderImage] = useState(data.headerImage);
-  const [contentImage, setContentImage] = useState(data.contentImage);
-  const [description, setDescription] = useState(data.description);
+  const [title, setTitle] = useState(data[0].header);
+  const [subHeader, setSubHeader] = useState(data[0].subHeader);
+  const [headerImage, setHeaderImage] = useState(data[0].headerImage);
+  const [contentImage, setContentImage] = useState(data[0].contentImage);
+  const [description, setDescription] = useState(data[0].description);
   const [errors,setErrors] = useState([]);
   return (
     <div className="postCreate">
@@ -27,7 +27,7 @@ function EditPost() {
         <button
           className="delete"
           onClick={async (e) => {
-            await csrfFetch(`/api/posts/${param.id}`, { method: "DELETE" });
+            await csrfFetch(`/api/posts/${param.editId}`, { method: "DELETE" });
             hist.push("/");
           }}
         >
@@ -51,7 +51,7 @@ function EditPost() {
             contentImage,
             description,
           };
-          dispatch(updatePost(obj,param.id))
+          dispatch(updatePost(obj,param.editId))
           .then(async (res) => {
             dispatch(getSinglePost(res));
             hist.push(`/posts/${res}`);

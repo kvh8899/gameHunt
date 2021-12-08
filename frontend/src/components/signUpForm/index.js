@@ -18,7 +18,7 @@ function SignupFormPage({suHidden}) {
       document.body.style.overflow = "scroll";
     }
   }, [suHidden.suHidden]);
-  if (sessionUser) return <Redirect to="/" />;
+  if (sessionUser && !suHidden.suHidden) return <Redirect to="/" />;
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password === confirmPassword) {

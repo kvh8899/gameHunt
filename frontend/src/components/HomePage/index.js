@@ -20,8 +20,6 @@ function HomePage() {
       dispatch(toggle(id));
       dispatch(getSinglePost(id));
       history.push(`/posts/${id}`);
-    } else {
-      dispatch(toggle(null));
     }
   }, [id]);
   return (
@@ -31,7 +29,6 @@ function HomePage() {
         e.preventDefault();
         setHidden(true);
         setSuHidden(true);
-        dispatch(toggle(null));
         history.push("/");
       }}
     >

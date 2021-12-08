@@ -21,6 +21,7 @@ router.get(
   "/",
   asyncHandler(async (req, res) => {
     const getPosts = await Post.findAll({
+      include: Comment,
       limit: 10,
       order: [["createdAt", "DESC"]],
     });
@@ -31,17 +32,17 @@ router.get(
 router.get(
   "/:id(\\d+)",
   asyncHandler(async (req, res) => {
-    const getPost = await Post.findByPk(req.params.id, {
-      include: User,
+    let getPost = await Post.findByPk(req.params.id, {
       include: {
         model:Comment,
-        include:User
+        include:User,
       },
-      where: {
-        id: req.params.id,
-      },
+      order:[[Comment,"createdAt","ASC"]],
     });
-    res.json(getPost);
+    const getUser = await Post.findByPk(req.params.id, {
+        include: User
+    });
+    res.json([getPost,getUser]);
   })
 );
 //create a post
@@ -104,4 +105,14 @@ router.delete(
     }
   })
 );
+//create a comment on a post
+router.post(`/:postId/comments`,asyncHandler(async(req,res) => {
+    const createComment = await Comment.create({
+        userId:req.body.userId,
+        postId:req.params.postId,
+        content:req.body.comment
+    })
+    res.status = 201;
+    res.json(createComment);
+}))
 module.exports = router;

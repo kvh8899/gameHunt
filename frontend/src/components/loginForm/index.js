@@ -25,7 +25,7 @@ function LoginFormPage({ hidden }) {
       document.body.style.overflow = "scroll";
     }
   }, [hidden.hidden]);
-  if (sessionUser) return <Redirect to="/" />;
+  if (sessionUser && !hidden.hidden) return <Redirect to="/" />;
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
