@@ -24,12 +24,13 @@ a {
 a:hover {
   color: #772ce8;
 }
+
 .body > nav {
   background-color:white;
   width:100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   box-shadow: 0px 0px 3px lightgray;
   height: 80px;
   margin: 0px;
@@ -64,15 +65,18 @@ nav > a {
   background-color: rgb(39, 31, 109);
   color: rgba(185, 185, 185, 0.5);
 }
-
+.name{
+  width:300px;
+}
 .leftNav {
   display: flex;
   justify-content: flex-start;
-  width: 1000px;
-  
+  width: 100%;
+  margin-left:60px;
 }
 .leftNav a {
   margin-right: 20px;
+  margin-left:20px;
 }
 .leftNav input {
   margin-left: 20px;

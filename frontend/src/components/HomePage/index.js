@@ -41,7 +41,7 @@ function HomePage() {
           <Link to="/">About</Link>
           <input placeholder="Search for games"></input>
           {sessionUser ? (
-            <Link to="/">Welcome {sessionUser.username}!</Link>
+            <Link to="/" className="name">Welcome {sessionUser.username}!</Link>
           ) : (
             ""
           )}
