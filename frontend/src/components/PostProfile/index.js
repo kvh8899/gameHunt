@@ -1,14 +1,15 @@
 import "./PostProfile.css";
-import {useHistory} from 'react-router-dom'
+import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toggle } from "../../store/postshow";
 //import { useEffect, useRef, useState } from "react";
-function PostProfile({suHidden}) {
+function PostProfile({ suHidden }) {
   const postShow = useSelector((state) => state.postShow);
   const postProfileData = useSelector((state) => state.postProfile);
   const sessionUser = useSelector((state) => state.session.user);
   const hist = useHistory();
   const dispatch = useDispatch();
+  console.log(postProfileData);
   if (postShow) {
     document.body.style.overflow = "hidden";
   } else {
@@ -27,12 +28,12 @@ function PostProfile({suHidden}) {
         <div className="profileHeader">
           <img
             className="listImg"
-            src={postProfileData.headerImage}
+            src={postProfileData[0]?.headerImage}
             alt="404 not found"
           ></img>
           <div className="profHeadings">
-            <h2>{postProfileData.header}</h2>
-            <h3>{postProfileData.subHeader}</h3>
+            <h2>{postProfileData[0]?.header}</h2>
+            <h3>{postProfileData[0]?.subHeader}</h3>
           </div>
         </div>
         <div className="mainContent">
@@ -40,43 +41,61 @@ function PostProfile({suHidden}) {
             <div className="imageContentWrap">
               <img
                 className="imageContent"
-                src={postProfileData.contentImage}
+                src={postProfileData[0]?.contentImage}
                 alt="404 not found"
               ></img>
             </div>
             <div className="divider"> </div>
-            <p className="description">{postProfileData.description}</p>
+            <p className="description">{postProfileData[0]?.description}</p>
           </div>
           <div className="profData">
-            <h3>Maker: {postProfileData?.User?.username}</h3>
+            <h3>Maker: {postProfileData[1]?.User?.username}</h3>
             <h3>
               Created:
               {new Date(
-                Date.parse(postProfileData.createdAt)
+                Date.parse(postProfileData[0]?.createdAt)
               ).toLocaleDateString("en-US")}
             </h3>
-            {sessionUser?.id === postProfileData.userId?<button className="edit" onClick={(e) => {
-                hist.push(`/posts/${postProfileData.id}/edit`);
-                dispatch(toggle(null));
-            }}>Edit</button>:""}
+            {sessionUser?.id === postProfileData.userId ? (
+              <button
+                className="edit"
+                onClick={(e) => {
+                  hist.push(`/posts/${postProfileData.id}/edit`);
+                  dispatch(toggle(null));
+                }}
+              >
+                Edit
+              </button>
+            ) : (
+              ""
+            )}
           </div>
         </div>
-        {/* how to access comments:postProfileData?.Comments?.map((e) => <p>{e.User.username}: {e.content}</p>)*/}
         <div className="commentsInput fixed">
-          <form onSubmit={(e) => {
-            e.preventDefault();
-            if(!sessionUser){
-              hist.push("/");
-              suHidden.setSuHidden(false);
-            } 
-          }}>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (!sessionUser) {
+                hist.push("/");
+                suHidden.setSuHidden(false);
+              }
+            }}
+          >
             <input placeholder="What are your thoughts?" required></input>
             <button>Submit</button>
           </form>
         </div>
         <div className="ss"></div>
         <div className="commentsContainer">
-          <p>Comments</p>
+          <p>Comments {`(${postProfileData[0]?.Comments?.length})`}</p>
+          {postProfileData[0]?.Comments?.map((e) => {
+            return (
+              <div key={e.id} className="comment">
+                <p>{e.User.username}</p>
+                <p className="cContent">{e.content}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

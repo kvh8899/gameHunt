@@ -135,7 +135,6 @@
   height: 34px;
 }
 .commentsContainer {
-  height: 500px;
   border: 1px solid lightgray;
   width: 550px;
   background-color: white;
@@ -147,4 +146,16 @@
 }
 .commentsContainer > p{
   padding:20px;
+}
+.comment{
+ 
+  padding-left:15px;
+  margin-bottom:20px;
+}
+.comment > p{
+  margin:5px;
+}
+.cContent{
+  font-weight:normal;
+  font-size:13px;
 }
