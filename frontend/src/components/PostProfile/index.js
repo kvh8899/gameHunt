@@ -61,6 +61,7 @@ function PostProfile() {
             }}>Edit</button>:""}
           </div>
         </div>
+        {/* how to access comments:postProfileData?.Comments?.map((e) => <p>{e.User.username}: {e.content}</p>)*/}
       </div>
     </div>
   ) : (

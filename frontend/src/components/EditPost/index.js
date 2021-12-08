@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getSinglePost ,updatePost} from "../../store/postProfile";
 import { csrfFetch } from "../../store/csrf";
-import { toggle } from "../../store/postshow";
 
 import "./EditPost.css";
 function EditPost() {
@@ -61,11 +60,7 @@ function EditPost() {
             const data = await res.json();
             if (data && data.errors) setErrors(data.errors);
           });
-          
-
-          //set the post that is showing to the one that is created here
-        }}
-      >
+        }}>
         <label htmlFor="header">Title</label>
         <input
           type="text"
