@@ -31,18 +31,17 @@ router.get(
 router.get(
   "/:id(\\d+)",
   asyncHandler(async (req, res) => {
-    const getPost = await Post.findByPk(req.params.id, {
-      include: User,
+    let getPost = await Post.findByPk(req.params.id, {
       include: {
         model:Comment,
         include:User,
       },
       order:[[Comment,"createdAt","ASC"]],
-      where: {
-        id: req.params.id,
-      },
     });
-    res.json(getPost);
+    const getUser = await Post.findByPk(req.params.id, {
+        include: User
+    });
+    res.json([getPost,getUser]);
   })
 );
 //create a post
