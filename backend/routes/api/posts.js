@@ -21,6 +21,7 @@ router.get(
   "/",
   asyncHandler(async (req, res) => {
     const getPosts = await Post.findAll({
+      include: Comment,
       limit: 10,
       order: [["createdAt", "DESC"]],
     });

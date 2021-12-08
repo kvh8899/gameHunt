@@ -3,13 +3,17 @@ import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toggle } from "../../store/postshow";
 import { getSinglePost, postComment } from "../../store/postProfile";
-import { useState } from "react";
-//import { useEffect, useRef, useState } from "react";
+import { useState, useEffect } from "react";
+import { useRef } from "react";
 function PostProfile({ suHidden }) {
   const postShow = useSelector((state) => state.postShow);
   const postProfileData = useSelector((state) => state.postProfile);
   const sessionUser = useSelector((state) => state.session.user);
+  const commRef = useRef([]);
+  const editRef = useRef([]);
+  const pRef = useRef([]);
   const [comment, setComment] = useState("");
+  const [comments, setComments] = useState("");
   const hist = useHistory();
   const dispatch = useDispatch();
   if (postShow) {
@@ -17,18 +21,47 @@ function PostProfile({ suHidden }) {
   } else {
     document.body.style.overflow = "scroll";
   }
+  useEffect(() => {
+    // fix later. need to filter nulls
+    commRef.current = commRef.current.slice(
+      0,
+      postProfileData[0]?.Comments.length
+    );
+    editRef.current = editRef.current.slice(
+      0,
+      postProfileData[0]?.Comments.length
+    );
+    pRef.current = pRef.current.slice(0, postProfileData[0]?.Comments.length);
+  }, [postProfileData]);
   return postShow ? (
     <div className="profileWrapper">
-      <div className="darken modal" onClick={(e) =>{
-        dispatch(toggle(null));
-      }}></div>
-      <button className="profExit" onClick={(e) =>{
-        dispatch(toggle(null));
-      }}>X</button>
+      <div
+        className="darken modal"
+        onClick={(e) => {
+          dispatch(toggle(null));
+        }}
+      ></div>
+      <button
+        className="profExit"
+        onClick={(e) => {
+          dispatch(toggle(null));
+        }}
+      >
+        X
+      </button>
       <div
         className="profileContent"
         onClick={(e) => {
           e.stopPropagation();
+          commRef.current.forEach((event) => {
+            event?.classList.add("hidden");
+          });
+          editRef.current.forEach((event) => {
+            event?.classList.add("hidden");
+          });
+          pRef.current.forEach((event) => {
+            event?.classList.remove("hidden");
+          });
         }}
       >
         <div className="profileHeader">
@@ -83,7 +116,7 @@ function PostProfile({ suHidden }) {
         </div>
         <div className="commentsInput fixed">
           <form
-            onSubmit={async(e) => {
+            onSubmit={async (e) => {
               e.preventDefault();
               if (!sessionUser) {
                 suHidden.setSuHidden(false);
@@ -117,11 +150,82 @@ function PostProfile({ suHidden }) {
         <div className="ss"></div>
         <div className="commentsContainer">
           <p>Comments {`(${postProfileData[0]?.Comments?.length})`}</p>
-          {postProfileData[0]?.Comments?.map((e) => {
+          {postProfileData[0]?.Comments?.map((e, i) => {
             return (
               <div key={e.id} className="comment">
-                <p>{e.User.username}</p>
-                <p className="cContent">{e.content}</p>
+                <div>
+                  <p>{e.User.username}</p>
+                  <p className="cContent" ref={(el) => (pRef.current[i] = el)}>
+                    {e.content}
+                  </p>
+                  <form
+                    className="hidden"
+                    ref={(el) => (editRef.current[i] = el)}
+                  >
+                    <textarea 
+                      value={comments}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                      }}
+                      onChange={(e) => {
+                        e.preventDefault();
+                        setComments(e.target.value);
+                        //POST request to update comment
+                      }}
+                    ></textarea>
+                  </form>
+                </div>
+                {e.userId === sessionUser.id ? (
+                  <div className="menu">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        commRef.current.forEach((event) => {
+                          if (event && event.id !== commRef.current[i].id) {
+                            event.classList.add("hidden");
+                          }
+                        });
+                        editRef.current.forEach((event) => {
+                          if (event && event.id !== commRef.current[i].id) {
+                            event.classList.add("hidden");
+                          }
+                        });
+                        pRef.current.forEach((event) => {
+                          if (event && event.id !== commRef.current[i].id) {
+                            event.classList.remove("hidden");
+                          }
+                        });
+                        commRef.current[i].classList.toggle("hidden");
+                      }}
+                    >
+                      <i className="fa fa-ellipsis-h"></i>
+                    </button>
+                    <div
+                      onClick={(e) => {
+                        e.stopPropagation();
+                      }}
+                      ref={(el) => (commRef.current[i] = el)}
+                      className="editComment hidden"
+                      id={e.id}
+                    >
+                      <button
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          commRef.current[i].classList.toggle("hidden");
+                          editRef.current[i].classList.toggle("hidden");
+                          pRef.current[i].classList.toggle("hidden");
+
+                          setComments(e.content);
+                        }}
+                      >
+                        Edit
+                      </button>
+                      <button>Delete</button>
+                    </div>
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
             );
           })}

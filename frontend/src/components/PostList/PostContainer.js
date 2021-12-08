@@ -6,6 +6,7 @@ function PostContainer({post}){
             <div>
                 <div className="header">{post.header}</div>
                 <div className="subHeader">{post.subHeader}</div>
+                <div className="cCount"><i className="fa fa-comment"></i> {post?.Comments?.length}</div>
             </div>
         </div>
     );
