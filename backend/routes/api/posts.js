@@ -35,8 +35,9 @@ router.get(
       include: User,
       include: {
         model:Comment,
-        include:User
+        include:User,
       },
+      order:[[Comment,"createdAt","ASC"]],
       where: {
         id: req.params.id,
       },
