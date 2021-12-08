@@ -1,8 +1,6 @@
 import "./PostProfile.css";
-import { useSelector } from "react-redux";
 import {useHistory} from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
-import {useHistory} from 'react-router-dom'
 import { toggle } from "../../store/postshow";
 //import { useEffect, useRef, useState } from "react";
 function PostProfile({suHidden}) {
