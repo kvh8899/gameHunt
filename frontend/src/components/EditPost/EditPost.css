@@ -1,0 +1,9 @@
+.postCreate > div{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.delete{
+    background-color: red;
+    width:125px;
+}

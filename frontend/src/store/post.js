@@ -1,3 +1,4 @@
+import { csrfFetch } from "./csrf";
 const GETPOST = "post/getpost";
 const getPosts = (data) => {
   return {
@@ -5,7 +6,6 @@ const getPosts = (data) => {
     payload: data,
   };
 };
-
 
 export const getPost = () => async (dispatch) => {
   const res = await fetch("/api/posts");
