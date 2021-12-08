@@ -2,14 +2,16 @@ import "./PostProfile.css";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toggle } from "../../store/postshow";
+import { getSinglePost, postComment } from "../../store/postProfile";
+import { useState } from "react";
 //import { useEffect, useRef, useState } from "react";
 function PostProfile({ suHidden }) {
   const postShow = useSelector((state) => state.postShow);
   const postProfileData = useSelector((state) => state.postProfile);
   const sessionUser = useSelector((state) => state.session.user);
+  const [comment, setComment] = useState("");
   const hist = useHistory();
   const dispatch = useDispatch();
-  console.log(postProfileData);
   if (postShow) {
     document.body.style.overflow = "hidden";
   } else {
@@ -17,8 +19,12 @@ function PostProfile({ suHidden }) {
   }
   return postShow ? (
     <div className="profileWrapper">
-      <div className="darken modal"></div>
-      <button className="profExit">X</button>
+      <div className="darken modal" onClick={(e) =>{
+        dispatch(toggle(null));
+      }}></div>
+      <button className="profExit" onClick={(e) =>{
+        dispatch(toggle(null));
+      }}>X</button>
       <div
         className="profileContent"
         onClick={(e) => {
@@ -56,11 +62,15 @@ function PostProfile({ suHidden }) {
                 Date.parse(postProfileData[0]?.createdAt)
               ).toLocaleDateString("en-US")}
             </h3>
-            {sessionUser?.id === postProfileData.userId ? (
+            {sessionUser?.id === postProfileData[0]?.userId ? (
               <button
                 className="edit"
                 onClick={(e) => {
-                  hist.push(`/posts/${postProfileData.id}/edit`);
+                  if (!sessionUser) {
+                    hist.push("/");
+                    suHidden.setSuHidden(false);
+                  }
+                  hist.push(`/posts/${postProfileData[0]?.id}/edit`);
                   dispatch(toggle(null));
                 }}
               >
@@ -73,15 +83,34 @@ function PostProfile({ suHidden }) {
         </div>
         <div className="commentsInput fixed">
           <form
-            onSubmit={(e) => {
+            onSubmit={async(e) => {
               e.preventDefault();
               if (!sessionUser) {
-                hist.push("/");
                 suHidden.setSuHidden(false);
+                return;
               }
+              //post request to make a comment
+              await dispatch(
+                postComment(
+                  {
+                    comment,
+                    userId: sessionUser.id,
+                  },
+                  postProfileData[0]?.id
+                )
+              );
+              await dispatch(getSinglePost(postProfileData[0]?.id));
+              setComment("");
             }}
           >
-            <input placeholder="What are your thoughts?" required></input>
+            <input
+              placeholder="What are your thoughts?"
+              value={comment}
+              onChange={(e) => {
+                setComment(e.target.value);
+              }}
+              required
+            ></input>
             <button>Submit</button>
           </form>
         </div>

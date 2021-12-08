@@ -104,4 +104,14 @@ router.delete(
     }
   })
 );
+//create a comment on a post
+router.post(`/:postId/comments`,asyncHandler(async(req,res) => {
+    const createComment = await Comment.create({
+        userId:req.body.userId,
+        postId:req.params.postId,
+        content:req.body.comment
+    })
+    res.status = 201;
+    res.json(createComment);
+}))
 module.exports = router;

@@ -11,7 +11,7 @@ function EditPost() {
   const dispatch = useDispatch();
   const hist = useHistory();
   useEffect(() => {
-    dispatch(getSinglePost(param.id));
+    dispatch(getSinglePost(param.editId));
   }, []);
   const data = useSelector((state) => state.postProfile);
   const [title, setTitle] = useState(data.header);

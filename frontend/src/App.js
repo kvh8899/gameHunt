@@ -29,7 +29,7 @@ function App() {
           <HomePage />
           <PostList />
         </Route>
-        <Route path="/posts/:id/edit">
+        <Route path="/posts/:editId/edit">
           <HomePage />
           <EditPost />
         </Route>
