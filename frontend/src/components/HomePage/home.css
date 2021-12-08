@@ -72,7 +72,7 @@ nav > a {
   display: flex;
   justify-content: flex-start;
   width: 100%;
-  margin-left:60px;
+  align-items:center;
 }
 .leftNav a {
   margin-right: 20px;
@@ -104,4 +104,14 @@ nav > a {
 }
 .logo{
   width:100px;
+}
+.rightNav{
+  display:flex;
+}
+.entireNav{
+  display:flex;
+  flex-direction:row;
+  width:85%;
+  margin:0px;
+  align-items:center;
 }
