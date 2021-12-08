@@ -1,7 +1,7 @@
 .postContainer {
   display: flex;
   flex-direction: column;
-  width: 95%;
+  width: 85%;
   border: 1px solid lightgray;
   background-color: white;
   border-radius: 5px;
@@ -22,7 +22,7 @@
   align-items: center;
 }
 .tab {
-  width: 95%;
+  width: 85%;
 }
 /* this must be changed to a button */
 

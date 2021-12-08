@@ -24,12 +24,13 @@ a {
 a:hover {
   color: #772ce8;
 }
+
 .body > nav {
   background-color:white;
   width:100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   box-shadow: 0px 0px 3px lightgray;
   height: 80px;
   margin: 0px;
@@ -64,15 +65,17 @@ nav > a {
   background-color: rgb(39, 31, 109);
   color: rgba(185, 185, 185, 0.5);
 }
-
+.name{
+  width:300px;
+}
 .leftNav {
   display: flex;
   justify-content: flex-start;
-  width: 900px;
-  margin-left:60px;
+  width: 100%;
+  align-items:center;
 }
 .leftNav a {
-  margin-left: 20px;
+  margin-right: 40px;
 }
 .leftNav input {
   margin-left: 20px;
@@ -80,6 +83,7 @@ nav > a {
   border-radius: 3px;
   width: 50%;
   height: 20px;
+  margin-right:20px;
 }
 .leftNav input:focus{
   outline:none;
@@ -96,4 +100,18 @@ nav > a {
   border: 20px solid rgb(243, 242, 242);
   border-radius: 2px;
   background-color: white;
+}
+.logo{
+  width:100px;
+}
+.rightNav{
+  display:flex;
+}
+.entireNav{
+  display:flex;
+  flex-direction:row;
+  width:85%;
+  margin:0px;
+  align-items:center;
+  margin-left:30px;
 }

@@ -2,28 +2,28 @@ import LoginFormPage from "../loginForm";
 import SignupFormPage from "../signUpForm";
 import PostProfile from "../PostProfile";
 import "./home.css";
-import { Link,useHistory,useParams} from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
 import { toggle } from "../../store/postshow";
-import {getSinglePost} from "../../store/postProfile"
+import { getSinglePost } from "../../store/postProfile";
 function HomePage() {
   const [hidden, setHidden] = useState(true);
   const [suHidden, setSuHidden] = useState(true);
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
-  const {id} = useParams();
+  const { id } = useParams();
   useEffect(() => {
-    if(id){
+    if (id) {
       dispatch(toggle(id));
       dispatch(getSinglePost(id));
       history.push(`/posts/${id}`);
-    }else{
+    } else {
       dispatch(toggle(null));
     }
-  },[id])
+  }, [id]);
   return (
     <div
       className="body"
@@ -36,64 +36,71 @@ function HomePage() {
       }}
     >
       <nav>
-        <div className="leftNav">
-          <Link to="/">Home</Link>
-          <Link to="/">About</Link>
-          <input placeholder="Search for games"></input>
-          {sessionUser ? (
-            <Link to="/">Welcome {sessionUser.username}!</Link>
-          ) : (
-            ""
-          )}
-        </div>
-
-        <div>
-          <button onClick={(e) => {
-            e.stopPropagation();
-            if(!sessionUser){
-              setSuHidden(false)
-            }else{
-              history.push("/posts/new")
-            }
-          }}>
-            <i className="fa fa-plus"></i>
-          </button>
-          {!sessionUser ? (
+        <div className="entireNav">
+          <div className="leftNav">
+            <Link to="/">
+              <img className="logo" src="/gameHunt.png" alt="logo"></img>
+            </Link>
+            <Link to="/">About</Link>
+            <input placeholder="Search for games"></input>
+            {sessionUser ? (
+              <Link to="/" className="name">
+                Welcome {sessionUser.username}!
+              </Link>
+            ) : (
+              ""
+            )}
+          </div>
+          <div className="rightNav">
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                setHidden(false);
+                if (!sessionUser) {
+                  setSuHidden(false);
+                } else {
+                  history.push("/posts/new");
+                }
               }}
             >
-              Sign In
+              <i className="fa fa-plus"></i>
             </button>
-          ) : (
-            ""
-          )}
-          {!sessionUser ? (
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                setSuHidden(false);
-              }}
-            >
-              Sign Up
-            </button>
-          ) : (
-            ""
-          )}
-          {!sessionUser ? (
-            ""
-          ) : (
-            <button
-              onClick={(e) => {
-                dispatch(sessionActions.logout());
-                history.push("/")
-              }}
-            >
-              Logout
-            </button>
-          )}
+            {!sessionUser ? (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setHidden(false);
+                }}
+              >
+                Sign In
+              </button>
+            ) : (
+              ""
+            )}
+            {!sessionUser ? (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSuHidden(false);
+                }}
+              >
+                Sign Up
+              </button>
+            ) : (
+              ""
+            )}
+            {!sessionUser ? (
+              ""
+            ) : (
+              <button
+                onClick={(e) => {
+                  dispatch(sessionActions.logout());
+                  history.push("/");
+                }}
+              >
+                Logout
+              </button>
+            )}
+          </div>
         </div>
       </nav>
       <LoginFormPage hidden={{ hidden, setHidden }} />

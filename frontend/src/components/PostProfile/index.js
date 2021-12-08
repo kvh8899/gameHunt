@@ -61,6 +61,7 @@ function PostProfile({suHidden}) {
             }}>Edit</button>:""}
           </div>
         </div>
+        {/* how to access comments:postProfileData?.Comments?.map((e) => <p>{e.User.username}: {e.content}</p>)*/}
         <div className="commentsInput fixed">
           <form onSubmit={(e) => {
             e.preventDefault();
