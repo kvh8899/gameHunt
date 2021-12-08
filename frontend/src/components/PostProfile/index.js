@@ -32,6 +32,7 @@ function PostProfile({ suHidden }) {
       postProfileData[0]?.Comments.length
     );
     pRef.current = pRef.current.slice(0, postProfileData[0]?.Comments.length);
+    console.log(postProfileData)
   }, [postProfileData]);
   return postShow ? (
     <div className="profileWrapper">
@@ -177,7 +178,7 @@ function PostProfile({ suHidden }) {
                     ></input>
                   </form>
                 </div>
-                {e.userId === sessionUser.id ? (
+                {e.userId === sessionUser?.id ? (
                   <div className="menu">
                     <button
                       onClick={(e) => {
