@@ -27,7 +27,7 @@ router.get(
     res.json(getPosts);
   })
 );
-
+// gets information for profile page
 router.get(
   "/:id(\\d+)",
   asyncHandler(async (req, res) => {
