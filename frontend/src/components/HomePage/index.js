@@ -37,7 +37,7 @@ function HomePage() {
     >
       <nav>
         <div className="leftNav">
-          <Link to="/">Home</Link>
+          <Link to="/"><img className="logo" src="/gameHunt.png" alt="logo"></img></Link>
           <Link to="/">About</Link>
           <input placeholder="Search for games"></input>
           {sessionUser ? (
