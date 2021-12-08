@@ -105,7 +105,7 @@ function HomePage() {
       </nav>
       <LoginFormPage hidden={{ hidden, setHidden }} />
       <SignupFormPage suHidden={{ suHidden, setSuHidden }} />
-      <PostProfile />
+      <PostProfile suHidden={{ suHidden, setSuHidden }}/>
     </div>
   );
 }

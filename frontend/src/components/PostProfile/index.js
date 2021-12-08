@@ -1,9 +1,9 @@
 import "./PostProfile.css";
-import { useSelector, useDispatch } from "react-redux";
 import {useHistory} from 'react-router-dom'
+import { useSelector, useDispatch } from "react-redux";
 import { toggle } from "../../store/postshow";
-function PostProfile() {
-
+//import { useEffect, useRef, useState } from "react";
+function PostProfile({suHidden}) {
   const postShow = useSelector((state) => state.postShow);
   const postProfileData = useSelector((state) => state.postProfile);
   const sessionUser = useSelector((state) => state.session.user);
@@ -62,6 +62,22 @@ function PostProfile() {
           </div>
         </div>
         {/* how to access comments:postProfileData?.Comments?.map((e) => <p>{e.User.username}: {e.content}</p>)*/}
+        <div className="commentsInput fixed">
+          <form onSubmit={(e) => {
+            e.preventDefault();
+            if(!sessionUser){
+              hist.push("/");
+              suHidden.setSuHidden(false);
+            } 
+          }}>
+            <input placeholder="What are your thoughts?" required></input>
+            <button>Submit</button>
+          </form>
+        </div>
+        <div className="ss"></div>
+        <div className="commentsContainer">
+          <p>Comments</p>
+        </div>
       </div>
     </div>
   ) : (

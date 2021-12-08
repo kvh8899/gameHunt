@@ -10,7 +10,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  overflow:scroll;
+  overflow: scroll;
 }
 
 .profileContent {
@@ -20,7 +20,7 @@
   z-index: 1;
   background-color: rgb(245, 244, 244);
   border-radius: 5px;
-  margin-top:50px;
+  margin-top: 50px;
   min-width: 1000px;
   width: 80%;
 }
@@ -29,7 +29,7 @@
   left: 40px;
   height: 40px;
   width: 40px;
-  top:10px;
+  top: 10px;
   border-radius: 100%;
   align-self: flex-start;
   font-weight: bold;
@@ -41,7 +41,6 @@
   padding-top: 50px;
   padding-bottom: 20px;
   display: flex;
-  
 }
 .profHeadings {
   padding-left: 20px;
@@ -50,51 +49,102 @@
   padding-bottom: 10px;
 }
 .imgContainer {
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    width: 80%;
-    background-color: white;
-    border: 1px solid lightgray;
-    border-radius: 5px;
-    margin-left: 30px;
-    margin-bottom:30px;
-    width:550px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  margin-left: 30px;
+  width: 550px;
 }
 .imageContent {
-    height:400px;
-    width:500px;
-    object-fit:cover;
+  height: 400px;
+  width: 500px;
+  object-fit: cover;
 }
-.divider{
-    border-bottom:1px solid lightgray;
-    width:95%;
-    align-self:center;
+.divider {
+  border-bottom: 1px solid lightgray;
+  width: 95%;
+  align-self: center;
 }
-.description{
-    align-self:start;
-    padding:20px;
-    font-weight:normal;
+.description {
+  align-self: start;
+  padding: 20px;
+  font-weight: normal;
 }
-.imageContentWrap{
-    display:flex;
-    padding:20px;
+.imageContentWrap {
+  display: flex;
+  padding: 20px;
 }
-.profData{
-    margin-left:40px;
-    margin-right:40px;
-    background-color:white;
-    border: 1px solid lightgray;
-    border-radius:5px;
-    padding:10px;
-    font-weight:normal;
-    flex:1;
+.profData {
+  margin-left: 40px;
+  margin-right: 40px;
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 10px;
+  font-weight: normal;
+  flex: 1;
 }
-.mainContent{
-    display:flex;
-    align-items:flex-start;
+.mainContent {
+  display: flex;
+  align-items: flex-start;
 }
-.edit{
-  width:100%;
-  margin-top:20px;
+.edit {
+  width: 100%;
+  margin-top: 20px;
+}
+.space {
+  height: 500px;
+}
+.commentsInput {
+  border: 1px solid lightgray;
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  margin-left: 30px;
+  width: 510px;
+}
+
+.fixed {
+  position: fixed;
+  z-index: 30;
+  bottom: 0;
+}
+.ss {
+  height: 50px;
+  width: 50px;
+}
+.commentsInput > form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 500px;
+}
+.commentsInput > form > button {
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+  width: 100px;
+  height: 40px;
+}
+.commentsInput > form > input {
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
+  width: 600px;
+  height: 34px;
+}
+.commentsContainer {
+  height: 500px;
+  border: 1px solid lightgray;
+  width: 550px;
+  background-color: white;
+  border-radius: 5px;
+  margin-left: 30px;
+  margin-top:-20px;
+  margin-bottom: 100px;
+  width: 550px;
+}
+.commentsContainer > p{
+  padding:20px;
 }
