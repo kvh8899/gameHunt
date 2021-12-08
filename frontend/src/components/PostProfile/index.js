@@ -161,18 +161,20 @@ function PostProfile({ suHidden }) {
                   <form
                     className="hidden"
                     ref={(el) => (editRef.current[i] = el)}
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      //POST request to update comment
+                    }}
                   >
-                    <textarea 
+                    <input
                       value={comments}
                       onClick={(event) => {
                         event.stopPropagation();
                       }}
                       onChange={(e) => {
-                        e.preventDefault();
                         setComments(e.target.value);
-                        //POST request to update comment
                       }}
-                    ></textarea>
+                    ></input>
                   </form>
                 </div>
                 {e.userId === sessionUser.id ? (
