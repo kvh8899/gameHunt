@@ -6,9 +6,11 @@ const { requireAuth } = require('../../utils/auth.js');
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const postsRouter = require('./posts.js');
+const commRouter = require('./comments.js')
 apiRouter.use('/session', sessionRouter);
 apiRouter.use('/users', usersRouter);
 apiRouter.use('/posts', postsRouter);
+apiRouter.use('/comments',commRouter);
 
 /*
  --- API TESTING CODE ---
