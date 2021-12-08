@@ -76,7 +76,6 @@ nav > a {
 }
 .leftNav a {
   margin-right: 20px;
-  margin-left:20px;
 }
 .leftNav input {
   margin-left: 20px;
@@ -114,4 +113,5 @@ nav > a {
   width:85%;
   margin:0px;
   align-items:center;
+  margin-left:30px;
 }
