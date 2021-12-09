@@ -6,6 +6,7 @@ export const getPosts = (data) => {
   };
 };
 
+//get all posts
 export const getPost = () => async (dispatch) => {
   const res = await fetch("/api/posts");
   if (res.ok) {

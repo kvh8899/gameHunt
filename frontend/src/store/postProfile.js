@@ -10,6 +10,7 @@ const getOnePost = (data) => {
   };
 };
 
+//get a specific post
 export const getSinglePost = (id) => async (dispatch) => {
   const res = await fetch(`/api/posts/${id}`);
   if (res.ok) {
@@ -19,6 +20,7 @@ export const getSinglePost = (id) => async (dispatch) => {
   }
 };
 
+//make a post
 export const Post = (data) => async (dispatch) => {
   const res = await csrfFetch("/api/posts", {
     method: "POST",
@@ -32,6 +34,7 @@ export const Post = (data) => async (dispatch) => {
   }
 };
 
+//delete a comment on the profile
 export const deleteComm = (id, postId) => async (dispatch) => {
   const res = await csrfFetch(`/api/comments/${id}`, { method: "DELETE" });
   if (res.ok) {
@@ -41,6 +44,7 @@ export const deleteComm = (id, postId) => async (dispatch) => {
   }
 };
 
+//update a comment on the profile
 export const updateComm = (data, id, postId) => async (dispatch) => {
   const res = await csrfFetch(`/api/comments/${id}/edit`, {
     method: "PUT",
@@ -52,6 +56,7 @@ export const updateComm = (data, id, postId) => async (dispatch) => {
   }
 };
 
+//update a post
 export const updatePost = (data, id) => async (dispatch) => {
   const res = await csrfFetch(`/api/posts/${id}/edit`, {
     method: "PATCH",
