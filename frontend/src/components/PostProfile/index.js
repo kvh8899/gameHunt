@@ -2,7 +2,12 @@ import "./PostProfile.css";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toggle } from "../../store/postshow";
-import { getSinglePost, postComment } from "../../store/postProfile";
+import {
+  getSinglePost,
+  postComment,
+  deleteComm,
+  updateComm,
+} from "../../store/postProfile";
 import { useState, useEffect } from "react";
 import { useRef } from "react";
 function PostProfile({ suHidden }) {
@@ -32,7 +37,6 @@ function PostProfile({ suHidden }) {
       postProfileData[0]?.Comments.length
     );
     pRef.current = pRef.current.slice(0, postProfileData[0]?.Comments.length);
-    console.log(postProfileData)
   }, [postProfileData]);
   return postShow ? (
     <div className="profileWrapper">
@@ -162,9 +166,16 @@ function PostProfile({ suHidden }) {
                   <form
                     className="hidden"
                     ref={(el) => (editRef.current[i] = el)}
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      //POST request to update comment
+                    onSubmit={async (event) => {
+                      event.preventDefault();
+                      let obj = {
+                        userId: sessionUser.id,
+                        postId: postProfileData[0]?.id,
+                        content: comments,
+                      };
+                      await dispatch(updateComm(obj, e.id,postProfileData[0]?.id));
+                      editRef.current[i].classList.toggle("hidden");
+                      pRef.current[i].classList.toggle("hidden");
                     }}
                   >
                     <input
@@ -223,7 +234,13 @@ function PostProfile({ suHidden }) {
                       >
                         Edit
                       </button>
-                      <button>Delete</button>
+                      <button
+                        onClick={(event) => {
+                          dispatch(deleteComm(e.id, postProfileData[0].id));
+                        }}
+                      >
+                        Delete
+                      </button>
                     </div>
                   </div>
                 ) : (

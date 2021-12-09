@@ -23,7 +23,23 @@ export const Post = (data) => async (dispatch) => {
   dispatch(toggle(cPost.id));
   return cPost;
 };
-
+export const deleteComm = (id, postId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/comments/${id}`, { method: "DELETE" });
+  if (res.ok) {
+    //reload post state
+    return dispatch(getSinglePost(postId));
+  }
+};
+export const updateComm = (data, id,postId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/comments/${id}/edit`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
+  if(res.ok){
+    return dispatch(getSinglePost(postId));
+  }
+};
 export const updatePost = (data, id) => async (dispatch) => {
   await csrfFetch(`/api/posts/${id}/edit`, {
     method: "PATCH",
