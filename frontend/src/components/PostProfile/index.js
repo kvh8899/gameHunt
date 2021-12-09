@@ -2,12 +2,8 @@ import "./PostProfile.css";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toggle } from "../../store/postshow";
-import {
-  getSinglePost,
-  postComment,
-  deleteComm,
-  updateComm,
-} from "../../store/postProfile";
+import { postComment, deleteComm, updateComm } from "../../store/postProfile";
+import Comment from '../Comments';
 import { useState, useEffect } from "react";
 import { useRef } from "react";
 function PostProfile({ suHidden }) {
@@ -18,7 +14,6 @@ function PostProfile({ suHidden }) {
   const editRef = useRef([]);
   const pRef = useRef([]);
   const [comment, setComment] = useState("");
-  const [comments, setComments] = useState("");
   const hist = useHistory();
   const dispatch = useDispatch();
   if (postShow) {
@@ -137,7 +132,6 @@ function PostProfile({ suHidden }) {
                   postProfileData[0]?.id
                 )
               );
-              await dispatch(getSinglePost(postProfileData[0]?.id));
               setComment("");
             }}
           >
@@ -153,103 +147,7 @@ function PostProfile({ suHidden }) {
           </form>
         </div>
         <div className="ss"></div>
-        <div className="commentsContainer">
-          <p>Comments {`(${postProfileData[0]?.Comments?.length})`}</p>
-          {postProfileData[0]?.Comments?.map((e, i) => {
-            return (
-              <div key={e.id} className="comment">
-                <div>
-                  <p>{e.User.username}</p>
-                  <p className="cContent" ref={(el) => (pRef.current[i] = el)}>
-                    {e.content}
-                  </p>
-                  <form
-                    className="hidden"
-                    ref={(el) => (editRef.current[i] = el)}
-                    onSubmit={async (event) => {
-                      event.preventDefault();
-                      let obj = {
-                        userId: sessionUser.id,
-                        postId: postProfileData[0]?.id,
-                        content: comments,
-                      };
-                      await dispatch(updateComm(obj, e.id,postProfileData[0]?.id));
-                      editRef.current[i].classList.toggle("hidden");
-                      pRef.current[i].classList.toggle("hidden");
-                    }}
-                  >
-                    <input
-                      value={comments}
-                      onClick={(event) => {
-                        event.stopPropagation();
-                      }}
-                      onChange={(e) => {
-                        setComments(e.target.value);
-                      }}
-                    ></input>
-                  </form>
-                </div>
-                {e.userId === sessionUser?.id ? (
-                  <div className="menu">
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        commRef.current.forEach((event) => {
-                          if (event && event.id !== commRef.current[i].id) {
-                            event.classList.add("hidden");
-                          }
-                        });
-                        editRef.current.forEach((event) => {
-                          if (event && event.id !== commRef.current[i].id) {
-                            event.classList.add("hidden");
-                          }
-                        });
-                        pRef.current.forEach((event) => {
-                          if (event && event.id !== commRef.current[i].id) {
-                            event.classList.remove("hidden");
-                          }
-                        });
-                        commRef.current[i].classList.toggle("hidden");
-                      }}
-                    >
-                      <i className="fa fa-ellipsis-h"></i>
-                    </button>
-                    <div
-                      onClick={(e) => {
-                        e.stopPropagation();
-                      }}
-                      ref={(el) => (commRef.current[i] = el)}
-                      className="editComment hidden"
-                      id={e.id}
-                    >
-                      <button
-                        onClick={(event) => {
-                          event.stopPropagation();
-                          commRef.current[i].classList.toggle("hidden");
-                          editRef.current[i].classList.toggle("hidden");
-                          pRef.current[i].classList.toggle("hidden");
-
-                          setComments(e.content);
-                        }}
-                      >
-                        Edit
-                      </button>
-                      <button
-                        onClick={(event) => {
-                          dispatch(deleteComm(e.id, postProfileData[0].id));
-                        }}
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </div>
-                ) : (
-                  ""
-                )}
-              </div>
-            );
-          })}
-        </div>
+        <Comment />
       </div>
     </div>
   ) : (
