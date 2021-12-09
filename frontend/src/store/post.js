@@ -1,5 +1,5 @@
 const GETPOST = "post/getpost";
-const getPosts = (data) => {
+export const getPosts = (data) => {
   return {
     type: GETPOST,
     payload: data,

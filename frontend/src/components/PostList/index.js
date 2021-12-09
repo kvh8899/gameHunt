@@ -20,12 +20,12 @@ function PostList() {
       </div>
       <div className="content">
         <div className="postContainer">
-          {postList.map((post) => {
+          {postList.map((post,index) => {
             return <div key={post.id} onClick={(e) => {
                 dispatch(toggle(post.id));
                 dispatch(getSinglePost(post.id));
                 hist.push(`/posts/${post.id}`);
-            }}><PostContainer post={post} /></div>;
+            }}><PostContainer post={post} index={index} /></div>;
           })}
         </div>
       </div>

@@ -3,8 +3,7 @@ import { deleteComm, updateComm } from "../../store/postProfile";
 import { useState, useEffect } from "react";
 import { useRef } from "react";
 import './Comments.css';
-function Comments({ suHidden }) {
-  const postShow = useSelector((state) => state.postShow);
+function Comments() {
   const postProfileData = useSelector((state) => state.postProfile);
   const sessionUser = useSelector((state) => state.session.user);
   const commRef = useRef([]);
@@ -12,13 +11,9 @@ function Comments({ suHidden }) {
   const pRef = useRef([]);
   const [comments, setComments] = useState("");
   const dispatch = useDispatch();
-  if (postShow) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "scroll";
-  }
+
   useEffect(() => {
-    // fix later. need to filter nulls
+    //to update refs
     commRef.current = commRef.current.slice(
       0,
       postProfileData[0]?.Comments.length

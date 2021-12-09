@@ -1,6 +1,6 @@
 import { csrfFetch } from "./csrf";
 import { toggle } from "./postshow";
-
+import { getPost } from "./post";
 const GETONEPOST = "post/getonepost";
 
 const getOnePost = (data) => {
@@ -14,7 +14,7 @@ export const getSinglePost = (id) => async (dispatch) => {
   const res = await fetch(`/api/posts/${id}`);
   if (res.ok) {
     const data = await res.json();
-    dispatch(getOnePost(data));
+    await dispatch(getOnePost(data));
     return data;
   }
 };
@@ -27,7 +27,7 @@ export const Post = (data) => async (dispatch) => {
   });
   if (res.ok) {
     const cPost = await res.json();
-    dispatch(toggle(cPost.id));
+    await dispatch(toggle(cPost.id));
     return cPost;
   }
 };
@@ -36,6 +36,7 @@ export const deleteComm = (id, postId) => async (dispatch) => {
   const res = await csrfFetch(`/api/comments/${id}`, { method: "DELETE" });
   if (res.ok) {
     //reload post state
+    await dispatch(getPost());
     return dispatch(getSinglePost(postId));
   }
 };
@@ -58,7 +59,7 @@ export const updatePost = (data, id) => async (dispatch) => {
     body: JSON.stringify(data),
   });
   if (res.ok) {
-    dispatch(toggle(id));
+    await dispatch(toggle(id));
     return id;
   }
 };
@@ -70,7 +71,8 @@ export const postComment = (data, postId) => async (dispatch) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
-  if(res.ok){
+  if (res.ok) {
+    await dispatch(getPost());
     await dispatch(getSinglePost(postId));
     return res;
   }
