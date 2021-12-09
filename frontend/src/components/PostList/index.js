@@ -25,7 +25,7 @@ function PostList() {
                 dispatch(toggle(post.id));
                 dispatch(getSinglePost(post.id));
                 hist.push(`/posts/${post.id}`);
-            }}><PostContainer post={post} index={index} /></div>;
+            }}><PostContainer post={post}/></div>;
           })}
         </div>
       </div>
