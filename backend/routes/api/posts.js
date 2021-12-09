@@ -29,6 +29,11 @@ router.get(
   })
 );
 
+/*
+    this is lumping in comments with posts.
+    It would be better for comments to have its
+    own get route. not changed for the sake of time
+*/
 router.get(
   "/:id(\\d+)",
   asyncHandler(async (req, res) => {

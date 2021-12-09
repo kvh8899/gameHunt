@@ -6,6 +6,7 @@ export const toggle = (id) => {
     payload: id,
   };
 };
+
 /*
     this reducer updates a variable that 
     lets the program know when to show the
