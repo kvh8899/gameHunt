@@ -1,23 +1,25 @@
-import { csrfFetch } from "./csrf";
 const GETPOST = "post/getpost";
-const getPosts = (data) => {
+export const getPosts = (data) => {
   return {
     type: GETPOST,
     payload: data,
   };
 };
 
+//get all posts
 export const getPost = () => async (dispatch) => {
   const res = await fetch("/api/posts");
-  const data = await res.json();
-  dispatch(getPosts(data));
-  return data;
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(getPosts(data));
+    return data;
+  }
 };
 
 const postReducer = (state = [], action) => {
   switch (action.type) {
     case GETPOST:
-      return [...action.payload];
+      return action.payload;
     default:
       return state;
   }

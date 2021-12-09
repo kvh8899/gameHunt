@@ -5,15 +5,13 @@ const router = express.Router();
 
 //update a comment
 router.put(
-  '/:commentId(\\d+)',
+  '/:commentId(\\d+)/edit',
   asyncHandler(async (req, res) => {
-    await Comment.update(
+    const update = await Comment.update(
       {
         userId: req.body.userId,
         postId: req.body.postId,
         content: req.body.content,
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
       {
         where: {
@@ -21,12 +19,13 @@ router.put(
         },
       }
     );
+    res.json(update);
   })
 );
 
 //delete a comment
 router.delete('/:commentId(\\d+)',asyncHandler(async(req,res) => {
-    const deleteItem = await Comment.findByPk(req.body.params);
+    const deleteItem = await Comment.findByPk(req.params.commentId);
     if(deleteItem){
         deleteItem.destroy();
         res.json({message:'Delete Successful'});

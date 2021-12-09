@@ -21,7 +21,7 @@ function HomePage() {
       dispatch(getSinglePost(id));
       history.push(`/posts/${id}`);
     }
-  }, [id]);
+  }, [id,dispatch,history]);
   return (
     <div
       className="body"

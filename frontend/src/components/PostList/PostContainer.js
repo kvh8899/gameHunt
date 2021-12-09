@@ -1,12 +1,13 @@
-
-function PostContainer({post}){
+import {useSelector} from 'react-redux'
+function PostContainer({post, index}){
+    const postList = useSelector((state) => state.posts);
     return (
         <div id={post.id} className="post">
-            <img src={post.headerImage} alt="null!" className="listImg"></img>
+            <img src={postList[index].headerImage} alt="null!" className="listImg"></img>
             <div>
-                <div className="header">{post.header}</div>
-                <div className="subHeader">{post.subHeader}</div>
-                <div className="cCount"><i className="fa fa-comment"></i> {post?.Comments?.length}</div>
+                <div className="header">{postList[index].header}</div>
+                <div className="subHeader">{postList[index].subHeader}</div>
+                <div className="cCount"><i className="fa fa-comment"></i> {postList[index].Comments.length}</div>
             </div>
         </div>
     );
