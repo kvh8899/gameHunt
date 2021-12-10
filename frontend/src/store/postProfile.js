@@ -11,7 +11,10 @@ const getOnePost = (data) => {
 
 //get a specific post
 export const getSinglePost = (id) => async (dispatch) => {
-  if(!id) dispatch(getOnePost({}))
+  if(!id){
+    dispatch(getOnePost({}))
+    return;
+  } 
   const res = await fetch(`/api/posts/${id}`);
   if (res.ok) {
     const data = await res.json();
