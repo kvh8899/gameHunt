@@ -2,10 +2,10 @@ import "./PostProfile.css";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toggle } from "../../store/postshow";
-import { postComment, deleteComm, updateComm } from "../../store/postProfile";
+import {deleteComm, updateComm } from "../../store/postProfile";
 import { useState, useEffect } from "react";
 import { useRef } from "react";
-import { createComment } from "../../store/comments";
+import { createComment,deleteComment} from "../../store/comments";
 function PostProfile({ suHidden }) {
   const postShow = useSelector((state) => state.postShow);
   const postProfileData = useSelector((state) => state.postProfile);
@@ -239,7 +239,7 @@ function PostProfile({ suHidden }) {
                       </button>
                       <button
                         onClick={(event) => {
-                          dispatch(deleteComm(e.id, postProfileData[0].id));
+                          dispatch(deleteComment(e.id));
                         }}
                       >
                         Delete
