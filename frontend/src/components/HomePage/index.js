@@ -90,7 +90,7 @@ function HomePage() {
               ""
             )}
           </div>
-          <div className="rightNav">
+         {searchHide? <div className="rightNav">
             <button
               onClick={(e) => {
                 e.stopPropagation();
@@ -139,7 +139,7 @@ function HomePage() {
                 Logout
               </button>
             )}
-          </div>
+          </div>:""} 
         </div>
       </nav>
       <LoginFormPage hidden={{ hidden, setHidden }} />
