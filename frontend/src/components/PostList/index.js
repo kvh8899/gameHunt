@@ -11,11 +11,12 @@ import {getPostComments} from '../../store/comments';
 
 function PostList() {
   const postList = useSelector((state) => state.posts);
+  const comments = useSelector((state) => state.comments);
   const dispatch = useDispatch();
   const hist = useHistory();
   useEffect(() => {
     dispatch(postActions.getPost());
-  }, []);
+  }, [comments]);
   return (
     <div className="wrapContent">
       <div className="tab">

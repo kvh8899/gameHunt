@@ -35,7 +35,6 @@ function HomePage() {
       history.push(`/posts/${id}`);
     }
   }, [id, dispatch, history]);
-
   return (
     <div
       className="body"

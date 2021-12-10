@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getSinglePost ,updatePost} from "../../store/postProfile";
 import { csrfFetch } from "../../store/csrf";
-
+import { getPost } from "../../store/post";
 import "./EditPost.css";
 function EditPost() {
   const sessionUser = useSelector((state) => state.session.user);
@@ -28,6 +28,7 @@ function EditPost() {
           className="delete"
           onClick={async (e) => {
             await csrfFetch(`/api/posts/${param.editId}`, { method: "DELETE" });
+            dispatch(getPost());
             hist.push("/");
           }}
         >
