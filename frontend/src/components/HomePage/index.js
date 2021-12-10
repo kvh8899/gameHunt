@@ -37,8 +37,6 @@ function HomePage() {
       onClick={(e) => {
         setHidden(true);
         setSuHidden(true);
-        setSearchHide(true);
-        setSearchContentHidden(true);
         history.push("/");
       }}
     >
