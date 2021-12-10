@@ -1,12 +1,14 @@
 import "./postList.css";
 import PostContainer from "./PostContainer";
-import * as postActions from "../../store/post";
-import {getSinglePost} from "../../store/postProfile"
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import {toggle} from "../../store/postshow"
-import {useHistory} from "react-router-dom"
+import {useHistory} from "react-router-dom";
+import {toggle} from "../../store/postshow";
+import * as postActions from "../../store/post";
+import {getSinglePost} from "../../store/postProfile"
 import {getPostComments} from '../../store/comments';
+
+
 function PostList() {
   const postList = useSelector((state) => state.posts);
   const dispatch = useDispatch();

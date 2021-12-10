@@ -1,9 +1,9 @@
 import "./PostProfile.css";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { toggle } from "../../store/postshow";
 import { useState, useEffect } from "react";
 import { useRef } from "react";
+import { toggle } from "../../store/postshow";
 import {
   createComment,
   deleteComment,
@@ -86,6 +86,7 @@ function PostProfile({ suHidden }) {
             <p className="description">{postProfileData.description}</p>
           </div>
           <div className="profData">
+            {/* User.username is null on first load so check null first*/}
             <h3>Maker: {postProfileData?.User?.username}</h3>
             <h3>
               Created:
@@ -120,7 +121,7 @@ function PostProfile({ suHidden }) {
                 suHidden.setSuHidden(false);
                 return;
               }
-              //post request to make a comment
+              /*post request to make a comment*/
               await dispatch(
                 createComment(
                   {
