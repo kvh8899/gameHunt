@@ -11,6 +11,13 @@ function SignupFormPage({suHidden}) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  function reset() {
+    setEmail("");
+    setUsername("")
+    setPassword("")
+    setConfirmPassword("")
+    setErrors([]);
+  }
   useEffect(() => {
     if (!suHidden.suHidden) {
       document.body.style.overflow = "hidden";
@@ -25,7 +32,7 @@ function SignupFormPage({suHidden}) {
       setErrors([]);
       return dispatch(
         sessionActions.signup({ email, username, password })
-      ).catch(async (res) => {
+      ).then(res => reset()).catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       });
