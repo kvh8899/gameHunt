@@ -17,6 +17,7 @@ const validatePost = [
     .withMessage("Please add a description of at least 10 Characters"),
   handleValidationErrors,
 ];
+
 router.get(
   "/",
   asyncHandler(async (req, res) => {
@@ -29,29 +30,17 @@ router.get(
   })
 );
 
-/*
-    this is lumping in comments with posts.
-    It would be better for comments to have its
-    own get route. not changed for the sake of time
-*/
 router.get(
   "/:id(\\d+)",
   asyncHandler(async (req, res) => {
     let getPost = await Post.findByPk(req.params.id, {
-      include: {
-        model:Comment,
-        include:User,
-      },
-      order:[[Comment,"createdAt","ASC"]],
+      include: User,
     });
-    const getUser = await Post.findByPk(req.params.id, {
-        include: User
-    });
-    res.json([getPost,getUser]);
+    res.json(getPost);
   })
 );
-//create a post
 
+//create a post
 router.post(
   "/",
   validatePost,
@@ -111,13 +100,30 @@ router.delete(
   })
 );
 //create a comment on a post
-router.post(`/:postId/comments`,asyncHandler(async(req,res) => {
+router.post(
+  `/:postId/comments`,
+  asyncHandler(async (req, res) => {
     const createComment = await Comment.create({
-        userId:req.body.userId,
-        postId:req.params.postId,
-        content:req.body.comment
-    })
+      userId: req.body.userId,
+      postId: req.params.postId,
+      content: req.body.content,
+    });
     res.status = 201;
     res.json(createComment);
-}))
+  })
+);
+
+router.get(
+  "/:postId/comments",
+  asyncHandler(async (req, res) => {
+    const getComments = await Comment.findAll({
+      include: User,
+      where: {
+        postId: req.params.postId,
+      },
+      order: [["createdAt", "ASC"]],
+    });
+    res.json(getComments);
+  })
+);
 module.exports = router;

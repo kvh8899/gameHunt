@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getSinglePost ,updatePost} from "../../store/postProfile";
 import { csrfFetch } from "../../store/csrf";
-
+import { getPost } from "../../store/post";
 import "./EditPost.css";
 function EditPost() {
   const sessionUser = useSelector((state) => state.session.user);
@@ -14,11 +14,11 @@ function EditPost() {
     dispatch(getSinglePost(param.editId));
   }, []);
   const data = useSelector((state) => state.postProfile);
-  const [title, setTitle] = useState(data[0].header);
-  const [subHeader, setSubHeader] = useState(data[0].subHeader);
-  const [headerImage, setHeaderImage] = useState(data[0].headerImage);
-  const [contentImage, setContentImage] = useState(data[0].contentImage);
-  const [description, setDescription] = useState(data[0].description);
+  const [title, setTitle] = useState(data.header);
+  const [subHeader, setSubHeader] = useState(data.subHeader);
+  const [headerImage, setHeaderImage] = useState(data.headerImage);
+  const [contentImage, setContentImage] = useState(data.contentImage);
+  const [description, setDescription] = useState(data.description);
   const [errors,setErrors] = useState([]);
   return (
     <div className="postCreate">
@@ -28,6 +28,7 @@ function EditPost() {
           className="delete"
           onClick={async (e) => {
             await csrfFetch(`/api/posts/${param.editId}`, { method: "DELETE" });
+            dispatch(getPost());
             hist.push("/");
           }}
         >

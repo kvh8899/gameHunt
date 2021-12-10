@@ -1,0 +1,25 @@
+.searchWrapper{
+    position:relative;
+    z-index:2;
+    width:100%;
+    background-color:white;
+    border:1px solid lightgray;
+    border-radius:3px;
+}
+
+.searchPost{
+    display:flex;
+    justify-content:flex-start;
+    margin:20px;
+    cursor: pointer;
+}
+
+.searchHeadings{
+   display:flex;
+   flex-direction:column;
+   justify-content:flex-start;
+}
+.searchHeadings p {
+    margin-top:0px;
+    margin-left:20px;
+}

@@ -16,6 +16,7 @@ textarea{
   justify-content: flex-start;
   align-items: center;
   overflow: scroll;
+  z-index:2;
 }
 
 .profileContent {
@@ -26,8 +27,7 @@ textarea{
   background-color: rgb(245, 244, 244);
   border-radius: 5px;
   margin-top: 50px;
-  min-width: 1000px;
-  width: 80%;
+  width: fit-content;
 }
 .profExit {
   position: relative;
@@ -91,6 +91,7 @@ textarea{
   padding: 10px;
   font-weight: normal;
   flex: 1;
+  min-width:200px;
 }
 .mainContent {
   display: flex;
@@ -221,4 +222,12 @@ textarea{
   color:#772ce8;
   height:20px;
   width:30px;
+}
+
+.fa-3x{
+  margin:20px;
+}
+.fast-spin {
+  -webkit-animation: fa-spin 0.7s infinite linear;
+  animation: fa-spin 0.7s infinite linear;
 }

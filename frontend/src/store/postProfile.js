@@ -1,8 +1,7 @@
 import { csrfFetch } from "./csrf";
 import { toggle } from "./postshow";
-import { getPost } from "./post";
-const GETONEPOST = "post/getonepost";
 
+const GETONEPOST = "post/getonepost";
 const getOnePost = (data) => {
   return {
     type: GETONEPOST,
@@ -12,6 +11,10 @@ const getOnePost = (data) => {
 
 //get a specific post
 export const getSinglePost = (id) => async (dispatch) => {
+  if(!id){
+    dispatch(getOnePost({}))
+    return;
+  } 
   const res = await fetch(`/api/posts/${id}`);
   if (res.ok) {
     const data = await res.json();
@@ -34,28 +37,6 @@ export const Post = (data) => async (dispatch) => {
   }
 };
 
-//delete a comment on the profile
-export const deleteComm = (id, postId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/comments/${id}`, { method: "DELETE" });
-  if (res.ok) {
-    //reload post state
-    await dispatch(getPost());
-    return dispatch(getSinglePost(postId));
-  }
-};
-
-//update a comment on the profile
-export const updateComm = (data, id, postId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/comments/${id}/edit`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  });
-  if (res.ok) {
-    return dispatch(getSinglePost(postId));
-  }
-};
-
 //update a post
 export const updatePost = (data, id) => async (dispatch) => {
   const res = await csrfFetch(`/api/posts/${id}/edit`, {
@@ -66,20 +47,6 @@ export const updatePost = (data, id) => async (dispatch) => {
   if (res.ok) {
     await dispatch(toggle(id));
     return id;
-  }
-};
-
-//data should include userId and the content of the comment
-export const postComment = (data, postId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/posts/${postId}/comments`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  });
-  if (res.ok) {
-    await dispatch(getPost());
-    await dispatch(getSinglePost(postId));
-    return res;
   }
 };
 
