@@ -1,10 +1,10 @@
 .searchWrapper{
-    top:50px;
+    position:relative;
+    z-index:2;
     width:100%;
     background-color:white;
     border:1px solid lightgray;
     border-radius:3px;
-    align-self:flex-end;
 }
 
 .searchPost{

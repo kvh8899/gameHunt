@@ -22,6 +22,7 @@ function HomePage() {
   const history = useHistory();
   const { id } = useParams();
   const bar = useRef(null);
+  
   useEffect(() => {
     if (id) {
       dispatch(toggle(id));
@@ -29,7 +30,7 @@ function HomePage() {
       history.push(`/posts/${id}`);
     }
   }, [id, dispatch, history]);
-  
+
   return (
     <div
       className="body"
@@ -42,6 +43,10 @@ function HomePage() {
         history.push("/");
       }}
     >
+      <div className="screen" onClick={(e) => {
+        e.preventDefault();
+        setSearchHide(true);
+      }}></div>
       <nav>
         <div className="entireNav">
           <div className="leftNav">
@@ -61,10 +66,9 @@ function HomePage() {
                 onBlur={(e) => {
                   setSearch("");
                 }}
-                onChange={(e) => {
-                  dispatch(searchPosts(e.target.value));
+                onChange={async(e) => {
                   setSearch(e.target.value);
-
+                  await dispatch(searchPosts(e.target.value));
                   if (e.target.value) {
                     setSearchContentHidden(false);
                   } else {
@@ -74,16 +78,20 @@ function HomePage() {
               ></input>
               {!searchContentHidden ? <SearchContent /> : ""}
             </div>
-           {searchHide? <div className="util">
-              <Link to="/">About</Link>
-              {sessionUser ? (
-                <Link to="/" className="name">
-                  Welcome {sessionUser.username}!
-                </Link>
-              ) : (
-                ""
-              )}
-            </div>: ""} 
+            {searchHide ? (
+              <div className="util">
+                {sessionUser ? (
+                  <Link to="/" className="name">
+                    Welcome {sessionUser.username}!
+                  </Link>
+                ) : (
+                  ""
+                )}
+                <Link to="/">About</Link>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
           <div className="rightNav">
             <button

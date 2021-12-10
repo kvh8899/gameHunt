@@ -100,13 +100,14 @@ nav > a {
 }
 .util{
   display:flex;
-  justify-content:center;
   position:relative;
-  justify-content:space-evenly;
+  justify-content:flex-start;
   width:100%;
   top:15px;
 }
-
+.util > a{
+  margin-left:40px;
+}
 .entireNav{
   display:flex;
   flex-direction:row;
@@ -125,4 +126,11 @@ nav > a {
   top:10px;
   margin-right:20px;
   align-items:center;
+}
+.screen{
+  position:fixed;
+  top:0;
+  right:0;
+  left:0;
+  bottom:0;
 }

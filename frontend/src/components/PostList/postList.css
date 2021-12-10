@@ -12,8 +12,11 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+  position:relative;
+  z-index:1;
 }
 .wrapContent {
+  
   margin-top: 20px;
   height: 100%;
   width: 100%;

@@ -21,9 +21,9 @@ function PostList() {
       <div className="content">
         <div className="postContainer">
           {postList.map((post,index) => {
-            return <div key={post.id} onClick={(e) => {
-                dispatch(toggle(post.id));
-                dispatch(getSinglePost(post.id));
+            return <div key={post.id} onClick={async(e) => {
+                await dispatch(toggle(post.id));
+                await dispatch(getSinglePost(post.id));
                 hist.push(`/posts/${post.id}`);
             }}><PostContainer post={post} index={index} /></div>;
           })}

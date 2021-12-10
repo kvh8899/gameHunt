@@ -7,6 +7,7 @@ function SearchContent({ width }) {
   const posts = useSelector((state) => state.searchData);
   const dispatch = useDispatch();
   const hist = useHistory();
+  console.log(posts)
   return (
     <div
       className="searchWrapper"
