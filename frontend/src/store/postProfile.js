@@ -1,8 +1,7 @@
 import { csrfFetch } from "./csrf";
 import { toggle } from "./postshow";
-import { getPost } from "./post";
-const GETONEPOST = "post/getonepost";
 
+const GETONEPOST = "post/getonepost";
 const getOnePost = (data) => {
   return {
     type: GETONEPOST,
@@ -34,7 +33,6 @@ export const Post = (data) => async (dispatch) => {
   }
 };
 
-
 //update a post
 export const updatePost = (data, id) => async (dispatch) => {
   const res = await csrfFetch(`/api/posts/${id}/edit`, {
@@ -47,8 +45,6 @@ export const updatePost = (data, id) => async (dispatch) => {
     return id;
   }
 };
-
-
 
 // load a specific post into state
 function postProfile(state = {}, action) {

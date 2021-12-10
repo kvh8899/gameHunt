@@ -29,7 +29,6 @@ const deleteCommentAction = (commentId) => {
   };
 };
 const updateCommentAction = (comment,commentId,User) => {
-
     return {
         type:UPDATE,
         payload:{...comment,id:commentId,User}
