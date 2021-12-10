@@ -118,17 +118,10 @@ nav > a {
   flex-direction: column;
   margin-left: 20px;
   border-radius: 3px;
-  width: 101%;
+  width: 100%;
   height: 100%;
   position: relative;
   top: 10px;
   margin-right: 20px;
-  align-items: center;
-}
-.screen {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
+  align-items: flex-start;
 }
