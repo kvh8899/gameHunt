@@ -21,7 +21,7 @@ function HomePage() {
   const [search, setSearch] = useState("");
   const sessionUser = useSelector((state) => state.session.user);
   const searchHide = useSelector((state) => state.searchHide);
-  const searchContentHidden = useSelector((state) => state.searchContentHidden)
+  const searchContentHidden = useSelector((state) => state.searchContentHidden);
   const dispatch = useDispatch();
   const history = useHistory();
   const { id } = useParams();
@@ -63,8 +63,9 @@ function HomePage() {
                 }}
                 onBlur={(e) => {
                   setSearch("");
-                  if(searchContentHidden !== null) dispatch(showContentAction(true));
-                  if(searchHide!== null) dispatch(showAction(true));
+                  if (searchContentHidden !== null)
+                    dispatch(showContentAction(true));
+                  if (searchHide !== null) dispatch(showAction(true));
                 }}
                 onChange={async (e) => {
                   setSearch(e.target.value);
@@ -76,17 +77,13 @@ function HomePage() {
                   }
                 }}
               ></input>
-              {!searchContentHidden ? (
-                <SearchContent />
-              ) : (
-                ""
-              )}
+              {!searchContentHidden ? <SearchContent /> : ""}
             </div>
             {searchHide ? (
               <div className="util">
                 {sessionUser ? (
                   <Link to="/" className="name">
-                    Welcome {sessionUser.username}!
+                    {sessionUser.username}
                   </Link>
                 ) : (
                   ""

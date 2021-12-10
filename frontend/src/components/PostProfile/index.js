@@ -184,7 +184,7 @@ function PostProfile({ suHidden }) {
           </>
         ) : (
           <div className="fa-3x">
-            <i className="fas fa-circle-notch fa-spin"></i>
+            <i className="fas fa-circle-notch fast-spin"></i>
           </div>
         )}
       </div>
