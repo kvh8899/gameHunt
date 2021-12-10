@@ -6,6 +6,7 @@ import { toggle } from "../../store/postshow";
 import CommentForm from "./CommentForm";
 import MainContent from "./MainContent";
 import { deleteComment, updateComment } from "../../store/comments";
+import { getSinglePost } from "../../store/postProfile";
 function PostProfile({ suHidden }) {
   const postShow = useSelector((state) => state.postShow);
   const postProfileData = useSelector((state) => state.postProfile);
@@ -31,13 +32,17 @@ function PostProfile({ suHidden }) {
       <div
         className="darken modal"
         onClick={(e) => {
+          /* reset state */
           dispatch(toggle(null));
+          dispatch(getSinglePost(null))
         }}
       ></div>
       <button
         className="profExit"
         onClick={(e) => {
+          /* reset state */
           dispatch(toggle(null));
+          dispatch(getSinglePost(null))
         }}
       >
         X
