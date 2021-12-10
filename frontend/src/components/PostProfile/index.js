@@ -44,7 +44,9 @@ function PostProfile({ suHidden }) {
           dispatch(toggle(null));
           dispatch(getSinglePost(null));
         }}
-      >X</button>
+      >
+        X
+      </button>
       <div
         className="profileContent"
         onClick={(e) => {
@@ -146,7 +148,7 @@ function PostProfile({ suHidden }) {
                             commRef.current[i].classList.toggle("hidden");
                           }}
                         >
-                          <i className="fa fa-ellipsis-h"></i>
+                          <i className="fas fa-ellipsis-h"></i>
                         </button>
                         <div
                           ref={(el) => (commRef.current[i] = el)}

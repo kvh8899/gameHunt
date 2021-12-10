@@ -1,0 +1,43 @@
+.aboutContent{
+    font-family: sans-serif;
+    text-align:center;
+    margin-top: 50px;
+    opacity:0;
+    transition: 2s;
+}
+.aboutContent h2{
+    font-size:30px;
+    font-weight:normal;
+}
+.aboutContent .spacer{
+    height:70px;
+    width:50px;
+}
+
+.aboutContent a{
+    color: #772ce8;
+}
+.aboutContent a:hover{
+    opacity:0.8;
+}
+.aboutContent p{
+    margin-bottom:50px;
+}
+.aboutContent .links{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-evenly;
+}
+.aboutContent img{
+    margin-bottom:50px;
+}
+
+.fade{
+    opacity:1;
+}
+.blankNav{
+    justify-content:flex-start;
+}
+.blankNav img{
+    margin-right:50px;
+}
