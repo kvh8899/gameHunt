@@ -4,11 +4,13 @@ import sessionReducer from './session';
 import postReducer from './post';
 import psReducer from './postshow';
 import postProfile from './postProfile';
+import searchReducer from './search';
 const rootReducer = combineReducers({
   session: sessionReducer,
   posts: postReducer,
   postShow: psReducer,
   postProfile,
+  searchData:searchReducer
 });
 
 

@@ -1,34 +1,20 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
-const { UPSERT } = require("sequelize/types/lib/query-types");
-const { Post, User } = require("../../db/models");
+const { Post, User ,Comment} = require("../../db/models");
 const router = express.Router();
-
+const {Op} = require("sequelize")
 router.get(
-  "/posts/search",
+  "/posts",
   asyncHandler(async (req, res) => {
-    const search = Post.findAll({
+    const search = await Post.findAll({
       include: Comment,
       limit: 10,
       order: [["createdAt", "DESC"]],
       where: {
-        [Op.or]: [
-          {
-            header: {
-              [Op.substring]: {
-                [Op.or]: [req.body.input],
-              },
-            },
-          },
-          {
-            subHeader: {
-              [Op.substring]: {
-                [Op.or]: [req.body.input],
-              },
-            },
-          },
-        ],
-      },
+          header:{
+            [Op.or]:[{[Op.substring]:req.query.input}]
+          }
+      }
     });
     res.json(search);
   })

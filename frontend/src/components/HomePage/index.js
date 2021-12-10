@@ -9,13 +9,14 @@ import { useSelector, useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
 import { toggle } from "../../store/postshow";
 import { getSinglePost } from "../../store/postProfile";
-import {useRef} from 'react'
+import { useRef } from "react";
+import { searchPosts } from "../../store/search";
 function HomePage() {
   const [hidden, setHidden] = useState(true);
   const [suHidden, setSuHidden] = useState(true);
   const [searchHide, setSearchHide] = useState(true);
   const [search, setSearch] = useState("");
-  const [searchContentHidden,setSearchContentHidden] = useState(true);
+  const [searchContentHidden, setSearchContentHidden] = useState(true);
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -53,32 +54,33 @@ function HomePage() {
                 }}
                 onBlur={(e) => {
                   setSearchHide(true);
+                  setSearch("");
+                  setSearchContentHidden(true);
                 }}
                 onChange={(e) => {
+                  dispatch(searchPosts(e.target.value));
                   setSearch(e.target.value);
-                  if(e.target.value){
+
+                  if (e.target.value) {
                     setSearchContentHidden(false);
-                    bar.current.style.top="51px";
-                  }else{
+                  } else {
                     setSearchContentHidden(true);
-                    bar.current.style.top="0px";
                   }
                 }}
               ></input>
-            {!searchContentHidden?<SearchContent/>: ""}
+              {/* searchcontenthidden*/}
+              {!searchContentHidden ? <SearchContent /> : ""}
             </div>
-            {searchHide ? <Link to="/">About</Link> : ""}
-            {sessionUser ? (
-              searchHide ? (
+           {searchHide? <div className="util">
+              <Link to="/">About</Link>
+              {sessionUser ? (
                 <Link to="/" className="name">
                   Welcome {sessionUser.username}!
                 </Link>
               ) : (
                 ""
-              )
-            ) : (
-              ""
-            )}
+              )}
+            </div>: ""} 
           </div>
           <div className="rightNav">
             <button
