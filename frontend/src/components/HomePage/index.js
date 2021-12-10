@@ -87,7 +87,9 @@ function HomePage() {
                 ) : (
                   ""
                 )}
-                <Link to="/">About</Link>
+                <Link to="/about" onClick={(e) => {
+                  e.stopPropagation();
+                }}>About</Link>
               </div>
             ) : (
               ""

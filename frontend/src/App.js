@@ -4,7 +4,8 @@ import { Route, Switch } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import PostList from "./components/PostList";
 import CreatePost from "./components/CreatePost";
-import EditPost from "./components/EditPost"
+import EditPost from "./components/EditPost";
+import About from "./components/About";
 import * as sessionActions from "./store/session";
 
 function App() {
@@ -32,6 +33,9 @@ function App() {
         <Route path="/posts/:editId/edit">
           <HomePage />
           <EditPost />
+        </Route>
+        <Route path="/about">
+          <About />
         </Route>
       </Switch>
     )
