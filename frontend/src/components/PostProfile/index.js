@@ -2,10 +2,14 @@ import "./PostProfile.css";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toggle } from "../../store/postshow";
-import {deleteComm, updateComm } from "../../store/postProfile";
+import { updateComm } from "../../store/postProfile";
 import { useState, useEffect } from "react";
 import { useRef } from "react";
-import { createComment,deleteComment} from "../../store/comments";
+import {
+  createComment,
+  deleteComment,
+  updateComment,
+} from "../../store/comments";
 function PostProfile({ suHidden }) {
   const postShow = useSelector((state) => state.postShow);
   const postProfileData = useSelector((state) => state.postProfile);
@@ -173,9 +177,14 @@ function PostProfile({ suHidden }) {
                         userId: sessionUser.id,
                         postId: postProfileData[0]?.id,
                         content: comments,
+                        createdAt: e.createdAt,
                       };
                       await dispatch(
-                        updateComm(obj, e.id, postProfileData[0]?.id)
+                        updateComment(obj, e.id, {
+                          username: sessionUser.username,
+                          id: sessionUser.id,
+                          email: sessionUser.email,
+                        })
                       );
                       editRef.current[i].classList.toggle("hidden");
                       pRef.current[i].classList.toggle("hidden");

@@ -7,19 +7,22 @@ const router = express.Router();
 router.put(
   '/:commentId(\\d+)/edit',
   asyncHandler(async (req, res) => {
-    const update = await Comment.update(
-      {
+      let updated = {
         userId: req.body.userId,
         postId: req.body.postId,
         content: req.body.content,
-      },
+        createdAt: req.body.createdAt,
+        updatedAt: new Date()
+      }
+    const update = await Comment.update(
+      updated,
       {
         where: {
           id: req.params.commentId,
         },
       }
     );
-    res.json(update);
+    res.json(updated);
   })
 );
 

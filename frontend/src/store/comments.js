@@ -2,6 +2,8 @@ import { csrfFetch } from "./csrf";
 const GETALL = "comments/getall";
 const CREATE = "comments/create";
 const DELETE = "comments/delete";
+const UPDATE = "comments/UPDATE"
+//data is comments for a post
 const getAllComments = (data) => {
   return {
     type: GETALL,
@@ -19,12 +21,20 @@ const postComment = (data, User) => {
     payload: obj,
   };
 };
+
 const deleteCommentAction = (commentId) => {
   return {
     type: DELETE,
-    commentId,
+    payload:commentId,
   };
 };
+const updateCommentAction = (comment,commentId,User) => {
+
+    return {
+        type:UPDATE,
+        payload:{...comment,id:commentId,User}
+    }
+}
 //get comments of a post thunk
 export const getPostComments = (postId) => async (dispatch) => {
   const res = await fetch(`/api/posts/${postId}/comments`);
@@ -59,6 +69,18 @@ export const deleteComment = (commentId) => async (dispatch) => {
     dispatch(deleteCommentAction(commentId));
   }
 };
+
+export const updateComment = (data, id,User) => async (dispatch) => {
+    const res = await csrfFetch(`/api/comments/${id}/edit`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (res.ok) {
+        const updated = await res.json();
+        dispatch(updateCommentAction(updated,id,User))
+    }
+  };
 function commentsReducer(state = [], action) {
   switch (action.type) {
     case GETALL:
@@ -66,7 +88,15 @@ function commentsReducer(state = [], action) {
     case CREATE:
       return [...state, action.payload];
     case DELETE:
-      return state.filter((e) => e.id !== action.commentId);
+      return state.filter((e) => e.id !== action.payload);
+    case UPDATE:
+        return state.map((e) =>{
+            if(e.id === action.payload.id){
+                return action.payload;
+            }else{
+                return e;
+            }
+        })
     default:
       return state;
   }

@@ -34,15 +34,6 @@ export const Post = (data) => async (dispatch) => {
   }
 };
 
-//delete a comment on the profile
-export const deleteComm = (id, postId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/comments/${id}`, { method: "DELETE" });
-  if (res.ok) {
-    //reload post state
-    await dispatch(getPost());
-    return dispatch(getSinglePost(postId));
-  }
-};
 
 //update a comment on the profile
 export const updateComm = (data, id, postId) => async (dispatch) => {
@@ -52,6 +43,7 @@ export const updateComm = (data, id, postId) => async (dispatch) => {
     body: JSON.stringify(data),
   });
   if (res.ok) {
+    const comment = await res.json();
     return dispatch(getSinglePost(postId));
   }
 };
@@ -69,19 +61,7 @@ export const updatePost = (data, id) => async (dispatch) => {
   }
 };
 
-//data should include userId and the content of the comment
-export const postComment = (data, postId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/posts/${postId}/comments`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  });
-  if (res.ok) {
-    await dispatch(getPost());
-    await dispatch(getSinglePost(postId));
-    return res;
-  }
-};
+
 
 // load a specific post into state
 function postProfile(state = {}, action) {
