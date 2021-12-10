@@ -35,18 +35,13 @@ function HomePage() {
     <div
       className="body"
       onClick={(e) => {
-        e.preventDefault();
         setHidden(true);
         setSuHidden(true);
-        setSearchContentHidden(true);
         setSearchHide(true);
+        setSearchContentHidden(true);
         history.push("/");
       }}
     >
-      <div className="screen" onClick={(e) => {
-        e.preventDefault();
-        setSearchHide(true);
-      }}></div>
       <nav>
         <div className="entireNav">
           <div className="leftNav">
@@ -65,6 +60,8 @@ function HomePage() {
                 }}
                 onBlur={(e) => {
                   setSearch("");
+                  setSearchContentHidden(true);
+                  setSearchHide(true);
                 }}
                 onChange={async(e) => {
                   setSearch(e.target.value);

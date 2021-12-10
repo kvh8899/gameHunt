@@ -3,20 +3,20 @@ import {getSinglePost} from "../../store/postProfile"
 import { useSelector,useDispatch } from "react-redux";
 import {toggle} from "../../store/postshow"
 import {useHistory} from "react-router-dom"
-function SearchContent({ width }) {
+function SearchContent() {
   const posts = useSelector((state) => state.searchData);
   const dispatch = useDispatch();
   const hist = useHistory();
-  console.log(posts)
+  
   return (
     <div
       className="searchWrapper"
-      style={{ width: width?.current?.offsetWidth }}
+
     >
       {posts ? (
         posts.map((e) => {
           return (
-            <div key={e.id} className="searchPost" onClick={(event) => {
+            <div key={e.id} className="searchPost" onMouseDown={(event) => {
                 console.log(event.target);
                 dispatch(toggle(e.id));
                 dispatch(getSinglePost(e.id));
