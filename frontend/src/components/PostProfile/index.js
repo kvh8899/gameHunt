@@ -44,10 +44,7 @@ function PostProfile({ suHidden }) {
           dispatch(toggle(null));
           dispatch(getSinglePost(null));
         }}
-      >
-        X
-      </button>
-
+      >X</button>
       <div
         className="profileContent"
         onClick={(e) => {
@@ -65,7 +62,6 @@ function PostProfile({ suHidden }) {
       >
         {postProfileData.id ? (
           <>
-            {" "}
             <div className="profileHeader">
               <img
                 className="listImg"
@@ -188,7 +184,7 @@ function PostProfile({ suHidden }) {
           </>
         ) : (
           <div className="fa-3x">
-            <i className="fa fa-spinner fa-pulse"></i>
+            <i className="fas fa-circle-notch fa-spin"></i>
           </div>
         )}
       </div>
