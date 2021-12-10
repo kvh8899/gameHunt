@@ -27,8 +27,7 @@ textarea{
   background-color: rgb(245, 244, 244);
   border-radius: 5px;
   margin-top: 50px;
-  min-width: 1000px;
-  width: 80%;
+  width: fit-content;
 }
 .profExit {
   position: relative;
@@ -92,6 +91,7 @@ textarea{
   padding: 10px;
   font-weight: normal;
   flex: 1;
+  min-width:200px;
 }
 .mainContent {
   display: flex;
@@ -223,3 +223,4 @@ textarea{
   height:20px;
   width:30px;
 }
+
