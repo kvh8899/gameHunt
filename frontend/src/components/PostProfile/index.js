@@ -83,7 +83,7 @@ function PostProfile({ suHidden }) {
               ></img>
             </div>
             <div className="divider"> </div>
-            <p className="description">{postProfileData[0]?.description}</p>
+            <p className="description">{postProfileData.description}</p>
           </div>
           <div className="profData">
             <h3>Maker: {postProfileData?.User?.username}</h3>
