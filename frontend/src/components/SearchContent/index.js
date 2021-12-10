@@ -17,7 +17,6 @@ function SearchContent() {
         posts.map((e) => {
           return (
             <div key={e.id} className="searchPost" onMouseDown={(event) => {
-                console.log(event.target);
                 dispatch(toggle(e.id));
                 dispatch(getSinglePost(e.id));
                 hist.push(`/posts/${e.id}`);

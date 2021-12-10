@@ -18,7 +18,7 @@ function PostProfile({ suHidden }) {
   const editRef = useRef([]);
   const pRef = useRef([]);
   const [comment, setComment] = useState("");
-  const [comments, setComments] = useState("");
+  const [edit, setEdit] = useState("");
   const hist = useHistory();
   const dispatch = useDispatch();
   if (postShow) {
@@ -27,16 +27,10 @@ function PostProfile({ suHidden }) {
     document.body.style.overflow = "scroll";
   }
   useEffect(() => {
-    commRef.current = commRef.current.slice(
-      0,
-      postComments.length
-    );
-    editRef.current = editRef.current.slice(
-      0,
-      postComments.length
-    );
+    commRef.current = commRef.current.slice(0, postComments.length);
+    editRef.current = editRef.current.slice(0, postComments.length);
     pRef.current = pRef.current.slice(0, postComments.length);
-  }, [postProfileData,postComments.length]);
+  }, [postProfileData, postComments.length]);
   return postShow ? (
     <div className="profileWrapper">
       <div
@@ -174,7 +168,7 @@ function PostProfile({ suHidden }) {
                       let obj = {
                         userId: sessionUser.id,
                         postId: postProfileData[0]?.id,
-                        content: comments,
+                        content: edit,
                         createdAt: e.createdAt,
                       };
                       await dispatch(
@@ -189,12 +183,12 @@ function PostProfile({ suHidden }) {
                     }}
                   >
                     <input
-                      value={comments}
+                      value={edit}
                       onClick={(event) => {
                         event.stopPropagation();
                       }}
                       onChange={(e) => {
-                        setComments(e.target.value);
+                        setEdit(e.target.value);
                       }}
                     ></input>
                   </form>
@@ -226,22 +220,18 @@ function PostProfile({ suHidden }) {
                       <i className="fa fa-ellipsis-h"></i>
                     </button>
                     <div
-                      onClick={(e) => {
-                        e.stopPropagation();
-                      }}
                       ref={(el) => (commRef.current[i] = el)}
                       className="editComment hidden"
                       id={e.id}
                     >
                       <button
-                      /* close modals when clicking the button*/
+                        /* close modals when clicking the button*/
                         onClick={(event) => {
                           event.stopPropagation();
                           commRef.current[i].classList.toggle("hidden");
                           editRef.current[i].classList.toggle("hidden");
                           pRef.current[i].classList.toggle("hidden");
-
-                          setComments(e.content);
+                          setEdit(e.content);
                         }}
                       >
                         Edit
