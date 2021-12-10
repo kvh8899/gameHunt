@@ -5,9 +5,11 @@ import { toggle } from "../../store/postshow";
 import { postComment, deleteComm, updateComm } from "../../store/postProfile";
 import { useState, useEffect } from "react";
 import { useRef } from "react";
+import { createComment } from "../../store/comments";
 function PostProfile({ suHidden }) {
   const postShow = useSelector((state) => state.postShow);
   const postProfileData = useSelector((state) => state.postProfile);
+  const postComments = useSelector((state) => state.comments);
   const sessionUser = useSelector((state) => state.session.user);
   const commRef = useRef([]);
   const editRef = useRef([]);
@@ -31,9 +33,7 @@ function PostProfile({ suHidden }) {
       0,
       postProfileData[0]?.Comments.length
     );
-    pRef.current = pRef.current.slice(
-      0, 
-      postProfileData[0]?.Comments.length);
+    pRef.current = pRef.current.slice(0, postProfileData[0]?.Comments.length);
   }, [postProfileData]);
   return postShow ? (
     <div className="profileWrapper">
@@ -126,10 +126,15 @@ function PostProfile({ suHidden }) {
               }
               //post request to make a comment
               await dispatch(
-                postComment(
+                createComment(
                   {
                     comment,
                     userId: sessionUser.id,
+                    User: {
+                      username: sessionUser.username,
+                      id: sessionUser.id,
+                      email: sessionUser.email,
+                    },
                   },
                   postProfileData[0]?.id
                 )
@@ -150,8 +155,8 @@ function PostProfile({ suHidden }) {
         </div>
         <div className="ss"></div>
         <div className="commentsContainer">
-          <p>Comments {`(${postProfileData[0]?.Comments?.length})`}</p>
-          {postProfileData[0]?.Comments?.map((e, i) => {
+          <p>Comments {`(${postComments.length})`}</p>
+          {postComments.map((e, i) => {
             return (
               <div key={e.id} className="comment">
                 <div>

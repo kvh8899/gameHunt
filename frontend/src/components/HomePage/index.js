@@ -9,8 +9,10 @@ import { useSelector, useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
 import { toggle } from "../../store/postshow";
 import { getSinglePost } from "../../store/postProfile";
-import { useRef } from "react";
 import { searchPosts } from "../../store/search";
+import { getPostComments } from "../../store/comments";
+import { useRef } from "react";
+
 function HomePage() {
   const [hidden, setHidden] = useState(true);
   const [suHidden, setSuHidden] = useState(true);
@@ -27,6 +29,7 @@ function HomePage() {
     if (id) {
       dispatch(toggle(id));
       dispatch(getSinglePost(id));
+      dispatch(getPostComments(id));
       history.push(`/posts/${id}`);
     }
   }, [id, dispatch, history]);

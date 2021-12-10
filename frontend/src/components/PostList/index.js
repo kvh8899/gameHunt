@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import {toggle} from "../../store/postshow"
 import {useHistory} from "react-router-dom"
+import {getPostComments} from '../../store/comments';
 function PostList() {
   const postList = useSelector((state) => state.posts);
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ function PostList() {
           {postList.map((post,index) => {
             return <div key={post.id} onClick={async(e) => {
                 await dispatch(toggle(post.id));
+                await dispatch(getPostComments(post.id));
                 await dispatch(getSinglePost(post.id));
                 hist.push(`/posts/${post.id}`);
             }}><PostContainer post={post} index={index} /></div>;

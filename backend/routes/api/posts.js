@@ -115,9 +115,20 @@ router.post(`/:postId/comments`,asyncHandler(async(req,res) => {
     const createComment = await Comment.create({
         userId:req.body.userId,
         postId:req.params.postId,
-        content:req.body.comment
+        content:req.body.content
     })
     res.status = 201;
     res.json(createComment);
+}))
+
+router.get('/:postId/comments',asyncHandler(async(req,res) => {
+    const getComments = await Comment.findAll({
+        include: User,
+        where:{
+            postId:req.params.postId
+        },
+        order:[['createdAt','ASC']]
+    });
+    res.json(getComments);
 }))
 module.exports = router;
