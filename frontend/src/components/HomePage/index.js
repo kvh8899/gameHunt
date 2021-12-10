@@ -29,6 +29,7 @@ function HomePage() {
       history.push(`/posts/${id}`);
     }
   }, [id, dispatch, history]);
+  
   return (
     <div
       className="body"
@@ -36,6 +37,8 @@ function HomePage() {
         e.preventDefault();
         setHidden(true);
         setSuHidden(true);
+        setSearchContentHidden(true);
+        setSearchHide(true);
         history.push("/");
       }}
     >
@@ -47,15 +50,16 @@ function HomePage() {
             </Link>
             <div className="searchBar" ref={bar}>
               <input
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
                 placeholder="Search for games"
                 value={search}
                 onFocus={(e) => {
                   setSearchHide(false);
                 }}
                 onBlur={(e) => {
-                  setSearchHide(true);
                   setSearch("");
-                  setSearchContentHidden(true);
                 }}
                 onChange={(e) => {
                   dispatch(searchPosts(e.target.value));
@@ -68,7 +72,6 @@ function HomePage() {
                   }
                 }}
               ></input>
-              {/* searchcontenthidden*/}
               {!searchContentHidden ? <SearchContent /> : ""}
             </div>
            {searchHide? <div className="util">

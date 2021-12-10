@@ -1,9 +1,12 @@
 import "./SearchContent.css";
-
-import { useSelector } from "react-redux";
-
+import {getSinglePost} from "../../store/postProfile"
+import { useSelector,useDispatch } from "react-redux";
+import {toggle} from "../../store/postshow"
+import {useHistory} from "react-router-dom"
 function SearchContent({ width }) {
   const posts = useSelector((state) => state.searchData);
+  const dispatch = useDispatch();
+  const hist = useHistory();
   return (
     <div
       className="searchWrapper"
@@ -12,7 +15,12 @@ function SearchContent({ width }) {
       {posts ? (
         posts.map((e) => {
           return (
-            <div key={e.id} className="searchPost">
+            <div key={e.id} className="searchPost" onClick={(event) => {
+                console.log(event.target);
+                dispatch(toggle(e.id));
+                dispatch(getSinglePost(e.id));
+                hist.push(`/posts/${e.id}`);
+            }}>
               <div className="imgContain">
                 <img
                   src={e.headerImage}
