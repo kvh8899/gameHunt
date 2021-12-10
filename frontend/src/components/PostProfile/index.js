@@ -2,7 +2,6 @@ import "./PostProfile.css";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toggle } from "../../store/postshow";
-import { updateComm } from "../../store/postProfile";
 import { useState, useEffect } from "react";
 import { useRef } from "react";
 import {
@@ -28,17 +27,16 @@ function PostProfile({ suHidden }) {
     document.body.style.overflow = "scroll";
   }
   useEffect(() => {
-    // fix later. need to filter nulls
     commRef.current = commRef.current.slice(
       0,
-      postProfileData[0]?.Comments.length
+      postComments.length
     );
     editRef.current = editRef.current.slice(
       0,
-      postProfileData[0]?.Comments.length
+      postComments.length
     );
-    pRef.current = pRef.current.slice(0, postProfileData[0]?.Comments.length);
-  }, [postProfileData]);
+    pRef.current = pRef.current.slice(0, postComments.length);
+  }, [postProfileData,postComments.length]);
   return postShow ? (
     <div className="profileWrapper">
       <div
@@ -73,12 +71,12 @@ function PostProfile({ suHidden }) {
         <div className="profileHeader">
           <img
             className="listImg"
-            src={postProfileData[0]?.headerImage}
+            src={postProfileData.headerImage}
             alt="404 not found"
           ></img>
           <div className="profHeadings">
-            <h2>{postProfileData[0]?.header}</h2>
-            <h3>{postProfileData[0]?.subHeader}</h3>
+            <h2>{postProfileData.header}</h2>
+            <h3>{postProfileData.subHeader}</h3>
           </div>
         </div>
         <div className="mainContent">
@@ -86,7 +84,7 @@ function PostProfile({ suHidden }) {
             <div className="imageContentWrap">
               <img
                 className="imageContent"
-                src={postProfileData[0]?.contentImage}
+                src={postProfileData.contentImage}
                 alt="404 not found"
               ></img>
             </div>
@@ -94,14 +92,14 @@ function PostProfile({ suHidden }) {
             <p className="description">{postProfileData[0]?.description}</p>
           </div>
           <div className="profData">
-            <h3>Maker: {postProfileData[1]?.User?.username}</h3>
+            <h3>Maker: {postProfileData?.User?.username}</h3>
             <h3>
               Created:
               {new Date(
-                Date.parse(postProfileData[0]?.createdAt)
+                Date.parse(postProfileData.createdAt)
               ).toLocaleDateString("en-US")}
             </h3>
-            {sessionUser?.id === postProfileData[0]?.userId ? (
+            {sessionUser?.id === postProfileData.userId ? (
               <button
                 className="edit"
                 onClick={(e) => {
@@ -109,7 +107,7 @@ function PostProfile({ suHidden }) {
                     hist.push("/");
                     suHidden.setSuHidden(false);
                   }
-                  hist.push(`/posts/${postProfileData[0]?.id}/edit`);
+                  hist.push(`/posts/${postProfileData.id}/edit`);
                   dispatch(toggle(null));
                 }}
               >
@@ -140,7 +138,7 @@ function PostProfile({ suHidden }) {
                       email: sessionUser.email,
                     },
                   },
-                  postProfileData[0]?.id
+                  postProfileData.id
                 )
               );
               setComment("");
@@ -171,8 +169,8 @@ function PostProfile({ suHidden }) {
                   <form
                     className="hidden"
                     ref={(el) => (editRef.current[i] = el)}
-                    onSubmit={async (event) => {
-                      event.preventDefault();
+                    onSubmit={async (submit) => {
+                      submit.preventDefault();
                       let obj = {
                         userId: sessionUser.id,
                         postId: postProfileData[0]?.id,
@@ -206,6 +204,7 @@ function PostProfile({ suHidden }) {
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
+                        /* this closes other comments modals*/
                         commRef.current.forEach((event) => {
                           if (event && event.id !== commRef.current[i].id) {
                             event.classList.add("hidden");
@@ -235,6 +234,7 @@ function PostProfile({ suHidden }) {
                       id={e.id}
                     >
                       <button
+                      /* close modals when clicking the button*/
                         onClick={(event) => {
                           event.stopPropagation();
                           commRef.current[i].classList.toggle("hidden");

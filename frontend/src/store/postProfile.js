@@ -35,19 +35,6 @@ export const Post = (data) => async (dispatch) => {
 };
 
 
-//update a comment on the profile
-export const updateComm = (data, id, postId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/comments/${id}/edit`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  });
-  if (res.ok) {
-    const comment = await res.json();
-    return dispatch(getSinglePost(postId));
-  }
-};
-
 //update a post
 export const updatePost = (data, id) => async (dispatch) => {
   const res = await csrfFetch(`/api/posts/${id}/edit`, {
