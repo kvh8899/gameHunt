@@ -81,9 +81,9 @@ function HomePage() {
             {searchHide ? (
               <div className="util">
                 {sessionUser ? (
-                  <Link to="/" className="name">
+                  <p>
                     {sessionUser.username}
-                  </Link>
+                  </p>
                 ) : (
                   ""
                 )}

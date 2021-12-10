@@ -105,7 +105,12 @@ nav > a {
 }
 .util > a {
   margin-left: 40px;
-  min-width:100px;
+  min-width: 100px;
+}
+.util > p {
+  margin-left: 40px;
+  min-width: 100px;
+  margin-top:0px;
 }
 .entireNav {
   display: flex;
@@ -125,6 +130,6 @@ nav > a {
   margin-right: 20px;
   align-items: center;
 }
-.searchBar > input{
-  height:30px;
+.searchBar > input {
+  height: 30px;
 }
