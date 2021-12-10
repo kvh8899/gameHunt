@@ -24,9 +24,9 @@ function SearchContent() {
       {posts ? (
         posts.map((e) => {
           return (
-            <div key={e.id} className="searchPost" onClick={(event) => {
-                dispatch(toggle(e.id));
-                dispatch(getSinglePost(e.id));
+            <div key={e.id} className="searchPost" onClick={async(event) => {
+                await dispatch(toggle(e.id));
+                await dispatch(getSinglePost(e.id));
                 hist.push(`/posts/${e.id}`);
             }}>
               <div className="imgContain">
