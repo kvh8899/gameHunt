@@ -6,13 +6,17 @@ import psReducer from './postshow';
 import postProfile from './postProfile';
 import searchReducer from './search';
 import commentsReducer from './comments'
+import searchHideReducer from "./searchShow";
+import searchContentReducer from "./searchContentHidden";
 const rootReducer = combineReducers({
   session: sessionReducer,
   posts: postReducer,
   postShow: psReducer,
   postProfile,
   searchData:searchReducer,
-  comments:commentsReducer
+  comments:commentsReducer,
+  searchHide:searchHideReducer,
+  searchContentHidden:searchContentReducer
 });
 
 

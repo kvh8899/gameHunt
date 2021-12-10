@@ -1,22 +1,30 @@
 import "./SearchContent.css";
 import {getSinglePost} from "../../store/postProfile"
 import { useSelector,useDispatch } from "react-redux";
+import { showAction } from "../../store/searchShow";
+import { showContentAction } from "../../store/searchContentHidden";
 import {toggle} from "../../store/postshow"
 import {useHistory} from "react-router-dom"
 function SearchContent() {
   const posts = useSelector((state) => state.searchData);
   const dispatch = useDispatch();
   const hist = useHistory();
-  
   return (
     <div
       className="searchWrapper"
-
+      onMouseDown={(e) => {
+          dispatch(showAction(null))
+          dispatch(showContentAction(null));
+      }}
+      onClick={(e) => {
+          dispatch(showAction(true));
+          dispatch(showContentAction(true));
+      }}
     >
       {posts ? (
         posts.map((e) => {
           return (
-            <div key={e.id} className="searchPost" onMouseDown={(event) => {
+            <div key={e.id} className="searchPost" onClick={(event) => {
                 dispatch(toggle(e.id));
                 dispatch(getSinglePost(e.id));
                 hist.push(`/posts/${e.id}`);
