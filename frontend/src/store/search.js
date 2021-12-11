@@ -7,6 +7,10 @@ const search = (data) => {
   };
 };
 export const searchPosts = (input) => async (dispatch) => {
+  if(!input){
+    await dispatch(search([]));
+    return;
+  }
   const res = await fetch(`/api/search/posts?input=${input}`);
 
   if (res.ok) {

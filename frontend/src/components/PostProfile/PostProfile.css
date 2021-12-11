@@ -1,10 +1,10 @@
-textarea{
-  resize:none;
-  height:500px;
-  width:450px;
+textarea {
+  resize: none;
+  height: 500px;
+  width: 450px;
 }
-.zindex{
-  z-index:2;
+.zindex {
+  z-index: 2;
 }
 .profileWrapper {
   position: fixed;
@@ -93,7 +93,7 @@ textarea{
   padding: 10px;
   font-weight: normal;
   flex: 1;
-  min-width:200px;
+  min-width: 200px;
 }
 .mainContent {
   display: flex;
@@ -144,95 +144,98 @@ textarea{
 }
 .commentsContainer {
   border: 1px solid lightgray;
-  
+
   background-color: white;
   border-radius: 5px;
   margin-left: 30px;
-  margin-top:-20px;
+  margin-top: -20px;
   margin-bottom: 100px;
   width: 550px;
 }
-.commentsContainer > p{
-  padding:20px;
+.commentsContainer > p {
+  padding: 20px;
   border-bottom: 1px solid lightgray;
 }
-.comment{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  padding-left:15px;
-  margin-bottom:20px;
-  padding-bottom:20px;
-  border-bottom:1px solid lightgray
+.comment {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-left: 15px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid lightgray;
 }
-.comment > button{
+.comment > button {
   background-color: transparent;
-  height:5px;
-  width:30px;
-  color:#772ce8;
-  text-align:center;
-  margin-right:20px;
-  font-size:20px;
+  height: 5px;
+  width: 30px;
+  color: #772ce8;
+  text-align: center;
+  margin-right: 20px;
+  font-size: 20px;
 }
-.comment > button:hover{
-  color:#772ce8;
+.comment > button:hover {
+  color: #772ce8;
 }
 
-.comment > p{
-  margin:5px;
+.comment > p {
+  margin: 5px;
 }
-.cContent{
-  font-weight:normal;
-  font-size:13px;
+.cContent {
+  font-weight: normal;
+  font-size: 13px;
   inline-size: 450px;
-  overflow-wrap:break-word;
+  overflow-wrap: break-word;
 }
-.editComment{
-  background-color:rgb(223, 223, 223);
-  position:relative;
-  z-index:25;
-  margin-top:10px;
-  height:100px;
-  width:90px;
-  border-radius:5px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
+.editComment {
+  background-color: rgb(223, 223, 223);
+  position: relative;
+  z-index: 25;
+  margin-top: 10px;
+  height: 100px;
+  width: 90px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.editComment > button{
-  width:80px;
-  margin-bottom:10px;
-  background-color:transparent;
-  border-bottom: 1px solid gray;
-  color:#772ce8;
-  border-radius:0px;
-  text-align:left;
-}
-
-.hidden{
-  display:none;
-}
-.menu{
-  position:relative;
-  height:50px;
-  width:50px;
-}
-.menu > button{
-  font-size:20px;
-  position:relative;
+.editComment > button {
+  width: 80px;
+  margin-bottom: 10px;
   background-color: transparent;
-  color:#772ce8;
-  height:20px;
-  width:30px;
+  border-bottom: 1px solid gray;
+  color: #772ce8;
+  border-radius: 0px;
+  text-align: left;
 }
 
-.fa-3x{
-  margin:20px;
+.hidden {
+  display: none;
+}
+.menu {
+  position: relative;
+  height: 50px;
+  width: 50px;
+}
+.menu > button {
+  font-size: 20px;
+  position: relative;
+  background-color: transparent;
+  color: #772ce8;
+  height: 20px;
+  width: 30px;
+}
+.rotate {
+  transform: rotate(90deg);
+}
+
+.fa-3x {
+  margin: 20px;
 }
 .fast-spin {
   -webkit-animation: fa-spin 0.7s infinite linear;
   animation: fa-spin 0.7s infinite linear;
 }
-.rotated{
-  transform:rotate(90deg)
+.rotated {
+  transform: rotate(90deg);
 }

@@ -7,6 +7,7 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
+import * as postActions from "../../store/post";
 import { toggle } from "../../store/postshow";
 import { getSinglePost } from "../../store/postProfile";
 import { searchPosts } from "../../store/search";
@@ -19,6 +20,7 @@ function HomePage() {
   const [hidden, setHidden] = useState(true);
   const [suHidden, setSuHidden] = useState(true);
   const [search, setSearch] = useState("");
+  const posts = useSelector((state) => state.searchData);
   const sessionUser = useSelector((state) => state.session.user);
   const searchHide = useSelector((state) => state.searchHide);
   const searchContentHidden = useSelector((state) => state.searchContentHidden);
@@ -48,9 +50,19 @@ function HomePage() {
         <div className="entireNav">
           <div className="leftNav">
             <Link to="/">
-              <img className="logo" src="/gameHunt.png" alt="logo"></img>
+              <img className="logo" src="/gameHunt.png" alt="logo" onClick={(e) => {
+                dispatch(postActions.getPost())
+              }}></img>
             </Link>
             <div className="searchBar" ref={bar}>
+              <form onSubmit={(e) => {
+                e.preventDefault();
+                if(search){
+                  dispatch(postActions.getPosts(posts))
+                }
+                dispatch(showAction(true));
+                dispatch(showContentAction(true));
+              }}>
               <input
                 onClick={(e) => {
                   e.stopPropagation();
@@ -59,11 +71,10 @@ function HomePage() {
                 value={search}
                 onFocus={(e) => {
                   dispatch(showAction(false));
+                  dispatch(showContentAction(false));
                 }}
                 onBlur={(e) => {
-                  setSearch("");
-                  if (searchContentHidden !== null)
-                    dispatch(showContentAction(true));
+                  if (searchContentHidden !== null) dispatch(showContentAction(true));
                   if (searchHide !== null) dispatch(showAction(true));
                 }}
                 onChange={async (e) => {
@@ -71,11 +82,14 @@ function HomePage() {
                   await dispatch(searchPosts(e.target.value));
                   if (e.target.value) {
                     dispatch(showContentAction(false));
+                    dispatch(showAction(false));
                   } else {
                     dispatch(showContentAction(true));
                   }
                 }}
               ></input>
+              
+              </form>
               {!searchContentHidden ? <SearchContent /> : ""}
             </div>
             {searchHide ? (
