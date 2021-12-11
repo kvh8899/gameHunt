@@ -3,6 +3,9 @@ textarea{
   height:500px;
   width:450px;
 }
+.zindex{
+  z-index:2;
+}
 .profileWrapper {
   position: fixed;
   right: 0;
@@ -16,7 +19,6 @@ textarea{
   justify-content: flex-start;
   align-items: center;
   overflow: scroll;
-  z-index:2;
 }
 
 .profileContent {

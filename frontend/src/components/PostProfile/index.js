@@ -28,15 +28,16 @@ function PostProfile({ suHidden }) {
     pRef.current = pRef.current.slice(0, postComments.length);
   }, [postProfileData, postComments.length]);
   return postShow ? (
-    <div className="profileWrapper">
-      <div
-        className="darken modal"
+    <div
+        className="darken modal zindex"
         onClick={(e) => {
           /* reset state */
           dispatch(toggle(null));
           dispatch(getSinglePost(null));
         }}
-      ></div>
+      >
+    <div className="profileWrapper">
+      
       <button
         className="profExit"
         onClick={(e) => {
@@ -190,6 +191,7 @@ function PostProfile({ suHidden }) {
           </div>
         )}
       </div>
+    </div>
     </div>
   ) : (
     ""
