@@ -2,6 +2,8 @@
 Link: https://gamehuntappc.herokuapp.com/
 
 - this app is inspired by Product Hunt.
+
+## Home Page
 ![](/docs/images/homeImg.png)
 
 ## Technologies
@@ -26,7 +28,7 @@ PostgreSQL
 
 1. Create the database
 2. Install postgres
-3. Create a database called codex_app
+3. Create a database called phuntc_app
 4. Set password as 'password' or any password. Note: make sure it is the same password as 5. the one in the .env file variables
 6. Create a new env file. Use .env.example as a reference.
 7. Run migrations: npx dotenv sequelize db:migrate
