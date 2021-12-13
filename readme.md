@@ -2,7 +2,7 @@
 Link: https://gamehuntappc.herokuapp.com/
 
 - this app is inspired by Product Hunt.
-
+![](/docs/images/homeImg.png)
 
 ## Technologies
 JavaScript
